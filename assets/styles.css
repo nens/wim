@@ -1,0 +1,260 @@
+.body{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: fixed;
+    width: 100%;
+    z-index: 99999999999999999999;
+    left: 0;
+    top: 0;
+    height: 55px;
+    display: flex;
+    align-items: center;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow */
+    background: linear-gradient(135deg, #F4C311, #BDDB45); /* Gradient background */
+}
+
+.navlist {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navitem {
+    color: #247C87 !important;
+    padding: 16px 20px;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: white;  /* Add background color property */
+}
+
+.navitem:hover {
+    background-color: #CAEAF3;
+    height: 55px !important;
+    opacity: 0.8;
+}
+
+.navbar-logo {
+    position: absolute;
+    left: 20px;
+    height: 35px;
+    width: auto;
+}
+
+.navitem.active {
+    color: #247C87 !important;
+    padding: 16px 20px;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: #CAEAF3;  /* Add background color property */
+}
+
+.navitem.active:hover {
+    background-color: #CAEAF3;
+    height: 55px !important;
+    opacity: 0.8;
+}
+
+.navbar-text {
+    color: #F2F2F2 !important;
+    padding: 12px 30px;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent;
+    font-size: 18px;
+    font-family: 'Trebuchet MS', sans-serif;
+    height: 55px;
+}
+
+.navbar-text-center {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: #F2F2F2 !important;
+    text-decoration: none !important;
+    border-bottom: 10px solid transparent;
+    font-size: 26px;
+    font-family: 'Trebuchet MS', sans-serif;
+    height: 55px;
+}
+.settings{
+    height:1rem;
+}
+
+.version-span{
+    color: white;
+    position: absolute;
+    right: 1rem;
+    bottom: 1.75rem;
+    opacity: 0.5;
+    z-index: 9999;
+    border: 2px solid #333;
+    border-radius: 25px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    background: #333;
+}
+
+.dropbtn {
+    background-color: transparent;
+	border: #76856e;
+	border-bottom: 2px solid transparent;
+    color: #F2F2F2 !important;
+    padding: 10px;
+    font-size: 18px;
+	font-family: 'Trebuchet MS', sans-serif !important;
+    height: 55px;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.3s;
+    positions: flex;
+    margin:0;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    right: 3.5rem;
+    top: 0rem;
+}
+
+.dropdown-content {
+    visibility: hidden;
+    position: fixed;
+    border-radius: 9px;
+    background-color: #333;
+    min-width: 160px;
+    overflow: auto;
+    right:3.5rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.dropdown-content-unit {
+    visibility: hidden;
+    position: fixed;
+    border-radius: 9px;
+    background-color: #333;
+    min-width: 160px;
+    overflow: auto;
+    right:7rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+
+.dropdown a {
+    background-color: transparent;
+	border: #76856e;
+	border-bottom: 2px solid transparent;
+    color: #383b37 !important;
+    padding: 10px;
+    font-size: 18px;
+	font-family: 'Trebuchet MS', sans-serif !important;
+    height: 55px;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dropdown-content a {
+    color: black;
+	background-color:  #CAEAF3;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropbtn:hover{
+	color: #00A9C1 !important;;
+    background-color:  #CAEAF3;
+	opacity: 0.8;
+	}
+
+.dropdown a:hover {
+	background-color: rgba(199, 224, 186, 0.733);
+	}
+	
+
+.body-text {
+	font-family: 'Trebuchet MS', sans-serif !important;
+	color: black;
+	background-color: rgba(199, 224, 186, 1);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+	right: -2rem;
+    position: fixed;
+	z-index: 1;
+}
+#myDropdown {
+    visibility: hidden;
+}
+
+#myDropdown.visible {
+    visibility: visible;
+}
+
+.inline-block-container {
+    font-size: 0;
+}
+
+iframe {
+    flex-grow: 1; /* Allow the iframe to grow and take available space */
+    width: 100%
+}
+
+:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the container takes up the full height of its parent */
+	padding:0;
+}
+
+
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #c7e0ba;
+    display: flex;
+    justify-content: space-between; /* Distribute buttons evenly */
+    height: 55px;
+    border-top: 1px solid #a3b0a4; /* Add a subtle border on top */
+}
+
+.navitem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7F7F7F;
+    padding: 0;
+    text-decoration: none;
+    font-size: 18px;
+    height: 100%;
+    width: 50%; /* Ensure each button takes up half of the available space */
+    line-height: 55px;
+    background-color: #C9D0D1
+}
+
+.navitem:hover {
+    background-color: #e0e0e0; /* Light grey for hover effect */
+}
+
+.navitem.active {
+    background-color: #81992E; /* Green for active button */
+    color: #ffffff; /* White text for active button */
+}
