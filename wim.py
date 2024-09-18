@@ -153,6 +153,58 @@ if nav == 'invullen':
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.write("slider", slider_val, "checkbox", checkbox_val)
+            
+elif nav == 'overzicht':
+    # overzichts pagina
+
+    # ga naar input_employee path
+    # get all files
+
+
+    # select name of file == person name
+
+    # check if it is filled
+    # if yes: voeg toe naar categories
+    # if not: shame list
+
+
+
+
+
+
+
+    import plotly.graph_objects as go
+
+    # Data for the bar chart
+
+    #TODO: deze vullen met lijst van files die zijn ingevuld 
+    categories = ['Eefje', 'Sjon', 'Kizje', 'Evert', 'Martijn']
+
+
+
+
+    values = ['Afwezig', 'Heel rustig', 'Rust', 'Goed', 'Heel Goed', 'Te druk']
+
+
+
+    fig = go.Figure([go.Bar(x=values, y=categories, 
+                            orientation='h',  # Set orientation to horizontal
+                            hoverinfo='text',  # Enable hover text
+                            hovertext=['A: 10 units', 'B: 20 units', 'C: 30 units'],  # Custom hover text
+                            #text=values,  # Display values on bars
+                            textposition='auto')])  # Position text on bars
+
+    # Customize the layout (optional)
+    fig.update_layout(title='Work in montoring',
+                      xaxis=dict(title='', side='top'),)
+                      #xaxis_title='Value',
+                      #yaxis_title='Category')
+
+
+    # place graphic on right spot
+    st.write('')
+    st.write('')
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 
 name, authentication_status, username = authenticator.login(location='main')
