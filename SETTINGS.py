@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #SETTINGS
-TITLE = 'WIM'
+TITLE = ''
 LOGO_PATH = './images/wim_logo.png'
 NAV_BOOL = False # Do we need navigation buttons in the header?
 

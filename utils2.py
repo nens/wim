@@ -137,6 +137,13 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH,nav_bool=NAV_BOO
             </script>
             '''
         html(js, height=0)
+        bottom_navbar = rf'''
+        <nav class="bottom-navbar">
+            <a class="navitem {"active" if st.query_params.nav == "invullen" or st.query_params.nav is None else ""}" href="/?nav=invullen " target="_self">Invullen</a>
+            <a class="navitem {"active" if st.query_params.nav == "overzicht" else ""}" href="/?nav=overzicht" target="_self">Overzicht</a>
+        </nav>
+        '''
+        st.markdown(bottom_navbar, unsafe_allow_html=True)
 
 
 
