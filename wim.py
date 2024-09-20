@@ -2,10 +2,14 @@ import streamlit as st
 import streamlit as st
 import streamlit_authenticator as stauth
 import os
+from pathlib import Path
+    
 import utils2 as utl
 import yaml
 from yaml.loader import SafeLoader
 from datetime import datetime, timedelta
+import datetime
+import pandas as pd
 
 
 st.set_page_config(page_title="WIM", page_icon=":water:", layout="wide")
@@ -156,6 +160,43 @@ if nav == 'invullen':
             
 elif nav == 'overzicht':
     # overzichts pagina
+    
+    # current week number
+    current_week_number = datetime.datetime.now().isocalendar()[1]
+    
+    folder_path = Path('input_employees')
+    df_current_week = pd.DataFrame(columns=['name', 'druk', 'note'])
+    
+    good_employees = []
+    bad_employees = []
+    # Loop through files in the folder
+    for file_path in folder_path.iterdir():
+        # Check if it's a file
+        if file_path.is_file():
+            # get name
+            name = file_path.name.split('.')[0]
+            
+            # get planning of employee
+            planning_employee = pd.read_csv(file_path)
+            planning_employee_cw = planning_employee.loc[planning_employee['week'] == current_week_number].reset_index()            
+            
+            # check if it is filled in
+            #TODO: select from current onwards
+            filled_in = planning_employee_cw['druk'].isin(['afwezog','heel rustig','rustig', 'goed', 'heel goed', 'te druk']).any()
+            
+            if filled_in == True:
+                good_employees += [name]
+                employee_row = {'name': name, 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0]}
+                df_current_week.loc[len(df_current_week)] = employee_row
+            else:
+                bad_employees += [name]
+
+            
+            
+
+            
+            
+
 
     # ga naar input_employee path
     # get all files
@@ -163,7 +204,7 @@ elif nav == 'overzicht':
 
     # select name of file == person name
 
-    # check if it is filled
+    
     # if yes: voeg toe naar categories
     # if not: shame list
 
@@ -183,20 +224,22 @@ elif nav == 'overzicht':
 
 
 
-    values = ['Afwezig', 'Heel rustig', 'Rust', 'Goed', 'Heel Goed', 'Te druk']
+    values = ['afwezig', 'heel rustig', 'rustig', 'goed', 'heel goed', 'te druk']
 
 
 
-    fig = go.Figure([go.Bar(x=values, y=categories, 
+    fig = go.Figure([go.Bar(x= list(df_current_week['druk']), y=list(df_current_week['name']), 
                             orientation='h',  # Set orientation to horizontal
                             hoverinfo='text',  # Enable hover text
-                            hovertext=['A: 10 units', 'B: 20 units', 'C: 30 units'],  # Custom hover text
+                            hovertext=list(df_current_week['note']),  # Custom hover text
                             #text=values,  # Display values on bars
                             textposition='auto')])  # Position text on bars
 
     # Customize the layout (optional)
     fig.update_layout(title='Work in montoring',
-                      xaxis=dict(title='', side='top'),)
+                      xaxis=dict(title='', side='top', 
+                                 tickvals=values,
+                                 ticktext=values,))
                       #xaxis_title='Value',
                       #yaxis_title='Category')
 
@@ -204,7 +247,13 @@ elif nav == 'overzicht':
     # place graphic on right spot
     st.write('')
     st.write('')
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    st.write('')
+    if not bad_employees:
+        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    else:
+        st.write('SHAMEEEEE -  mensen die niks hebben ingevuld')
+        st.write(bad_employees)
+        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 
 name, authentication_status, username = authenticator.login(location='main')
