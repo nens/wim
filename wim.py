@@ -14,7 +14,7 @@ import re
 
 today = datetime.datetime.now()
 
-st.set_page_config(page_title="WIM", page_icon=":water:", layout="wide")
+st.set_page_config(page_title="WIM", page_icon=":water:", layout="centered")
 
 streamlit_settings = """
         <style>
@@ -31,6 +31,7 @@ streamlit_settings = """
         }
         </style>
         """
+
 st.markdown(streamlit_settings, unsafe_allow_html=True)
 # Configuration settings
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -124,6 +125,7 @@ def extract_weeks(date_range):
         return list(range(start_week, end_week + 1))
 
     return week_numbers  # Return only found weeks if less than 2
+
 def read_user_data(username):
     # Define the file path based on the username
     pickle_file = f"./input_employees/{username}.pkl"
@@ -149,7 +151,7 @@ if nav == 'uitloggen':
     authenticator.logout('logout', 'unrendered', 'home')
     utl.get_current_route()
 if nav == 'invullen':
-    st.write('')
+    st.markdown('')
 
   #  st.subheader(f'Hi {name}, hoe druk ben jij?')
     default_start = today - timedelta(days=today.weekday())  # Monday
