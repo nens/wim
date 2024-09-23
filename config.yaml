@@ -4,10 +4,38 @@ credentials:
       email: esther.vanderlaan@nelen-schuurmans.nl
       name: Esther
       password: Esther # To be replaced with hashed password
-    rbriggs:
+    alexander:
       email: rbriggs@gmail.com
-      name: Rebecca Briggs
-      password: def # To be replaced with hashed password
+      name: Alexander
+      password: Alexander # To be replaced with hashed password
+    boran:
+      email: rbriggs@gmail.com
+      name: Boran
+      password: Boran # To be replaced with hashed password
+    evert:
+      email: rbriggs@gmail.com
+      name: Evert
+      password: Evert # To be replaced with hashed password
+    janmaarten:
+      email: rbriggs@gmail.com
+      name: Jan-Maarten
+      password: Jan-Maarten # To be replaced with hashed password
+    jasper:
+      email: rbriggs@gmail.com
+      name: Jasper
+      password: Jasper # To be replaced with hashed password
+    jeroen:
+      email: rbriggs@gmail.com
+      name: Jeroen
+      password: Jeroen # To be replaced with hashed password
+    joost:
+      email: rbriggs@gmail.com
+      name: Joost
+      password: Joost # To be replaced with hashed password
+    evert:
+      email: rbriggs@gmail.com
+      name: Evert
+      password: Evert # To be replaced with hashed password
 cookie:
   expiry_days: 30
   key: random_signature_key # Must be string

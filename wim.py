@@ -1,6 +1,6 @@
 import streamlit as st
-import streamlit as st
 import streamlit_authenticator as stauth
+from streamlit_date_picker import date_range_picker, date_picker, PickerType
 import os
 from pathlib import Path
     
@@ -49,114 +49,34 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+name, authentication_status, username = authenticator.login(location='main')
+
 
 nav = st.query_params.get('nav')
 
 if nav == 'invullen':
-    st.title('hi hoe druk ben jij?')
-    st.markdown("""
-        <style>
-        .week-selector {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            margin: 20px 0;
-        }
-        .week-arrow {
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 0 10px;
-            font-weight: bold;
-            user-select: none;
-        }
-        .week-text {
-            font-weight: bold;
-            margin: 0 15px;
-        }
-        .category-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-        .submit-btn {
-            display: block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # Week selection logic
-    today = datetime.now()
-    selected_week_start = st.session_state.get("selected_week_start", today - timedelta(days=today.weekday()))
-    selected_week_end = selected_week_start + timedelta(days=6)
-
-    # HTML for week selector with arrows
-    st.markdown(f"""
-        <div class="week-selector">
-            <div class="week-arrow" id="prev-week"><</div>
-            <div class="week-text">Week: {selected_week_start.strftime('%d %b')} - {selected_week_end.strftime('%d %b %Y')}</div>
-            <div class="week-arrow" id="next-week">></div>
-        </div>
-    """, unsafe_allow_html=True)
-
-    # JavaScript to handle arrow clicks (needs to interact with Streamlit's state)
-    st.markdown("""
-        <script>
-        document.getElementById('prev-week').onclick = function() {
-            window.location.href = '/?previous=true';
-        };
-        document.getElementById('next-week').onclick = function() {
-            window.location.href = '/?next=true';
-        };
-        </script>
-    """, unsafe_allow_html=True)
-
+    st.subheader(f'Hi {name}, Hoe druk ben jij?')
+    default_start, default_end = datetime.datetime.now() - timedelta(days=7), datetime.datetime.now()
+    refresh_value = timedelta(days=7)
+    date_range_string = date_range_picker(picker_type=PickerType.week,
+                                          start=default_start, end=default_end,
+                                          key='week_range_picker',
+                                          refresh_button={'is_show': False, 'button_name': 'Refresh Last 1 Week',
+                                                          'refresh_value': refresh_value})
+    if date_range_string:
+        start, end = date_range_string
+        st.write(f"wEEK Range Picker [{start}, {end}]")
 
     with st.form("my_form"):
         # HTML for week selector with arrows
-        st.markdown(f"""
-             <div class="week-selector">
-                 <div class="week-arrow" id="prev-week"><</div>
-                 <div class="week-text">Week: {selected_week_start.strftime('%d %b')} - {selected_week_end.strftime('%d %b %Y')}</div>
-                 <div class="week-arrow" id="next-week">></div>
-             </div>
-         """, unsafe_allow_html=True)
-
-        # JavaScript to handle arrow clicks (needs to interact with Streamlit's state)
-        st.markdown("""
-             <script>
-             document.getElementById('prev-week').onclick = function() {
-                 window.location.href = '/?previous=true';
-             };
-             document.getElementById('next-week').onclick = function() {
-                 window.location.href = '/?next=true';
-             };
-             </script>
-         """, unsafe_allow_html=True)
-
-        st.subheader("Select Category")
-        categories = ["Busy", "Not Busy"]
-        selected_category = st.radio("", categories, index=0, key="category_selector", horizontal=True)
-        submitted = st.form_submit_button("Submit")
+        categories = ["Heel Rustig", "Rustig", "Goed", "Druk", "Heel druk", "Afwezig"]
+        selected_category = st.radio("Drukte", categories, index=0, key="category_selector", horizontal=False)
+        st.text_input(label='notitie',placeholder="Hier is plek voor jouw 🥚..")
+        submitted = st.form_submit_button("INVULLEN")
         if submitted:
-            st.write("slider", slider_val, "checkbox", checkbox_val)
+            st.write("week", week, "drukte", selected_category)
+
+
             
 elif nav == 'overzicht':
     # overzichts pagina
