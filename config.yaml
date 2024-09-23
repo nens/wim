@@ -5,11 +5,11 @@ credentials:
       name: Esther
       password: Esther # To be replaced with hashed password
     alexander:
-      email: rbriggs@gmail.com
+      email: alexander.hoff@nelen-schuurmans.nl
       name: Alexander
       password: Alexander # To be replaced with hashed password
     boran:
-      email: rbriggs@gmail.com
+      email: boran.aydin@nelen-schuurmans.nl
       name: Boran
       password: Boran # To be replaced with hashed password
     evert:
@@ -36,8 +36,49 @@ credentials:
       email: rbriggs@gmail.com
       name: Evert
       password: Evert # To be replaced with hashed password
+    eefje:
+      email: rbriggs@gmail.com
+      name: Eefje
+      password: Eefje # To be replaced with hashed password
+    kizje:
+      email: rbriggs@gmail.com
+      name: Kizje
+      password: Kizje # To be replaced with hashed password
+    martijn:
+      email: martijn.krol@nelen-schuurmans.nl
+      name: Martijn
+      password: Martijn # To be replaced with hashed password
+    olof:
+      email: olof.baltus@nelen-schuurmans.nl
+      name: Olof
+      password: Olof # To be replaced with hashed password
+    phillippine:
+      email: phillippine.vantets@nelen-schuurmans.nl
+      name: Phillippine
+      password: Phillippine # To be replaced with hashed password
+    sjon:
+      email: sjon.vandijk@nelen-schuurmans.nl
+      name: Sjon
+      password: Sjon # To be replaced with hashed password
+    steven:
+      email: steven.hosper@nelen-schuurmans.nl
+      name: Steven
+      password: Steven # To be replaced with hashed password
+    stijn:
+      email: stijn.overmeen@nelen-schuurmans.nl
+      name: Stijn
+      password: Stijn # To be replaced with hashed password
+    wessel:
+      email: wessel.copier@nelen-schuurmans.nl
+      name: Wessel
+      password: Wessel # To be replaced with hashed password
+    taj:
+      email: taj.devries@nelen-schuurmans.nl
+      name: Taj
+      password: Taj # To be replaced with hashed password
+
 cookie:
-  expiry_days: 30
+  expiry_days: 360
   key: random_signature_key # Must be string
   name: random_cookie_name
 preauthorized:

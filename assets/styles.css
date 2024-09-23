@@ -329,50 +329,28 @@ div[role="radiogroup"] {
     .full-width-radio input[type="radio"]:hover + div {
         background: #00FF00; /* Green hover color */
     }
-        .center-radio .stRadio > div {
+    .center-radio input[type="radio"] {
         display: flex;
         justify-content: center;
     }
-/* Enhanced week selector styles */
-input[type="week"] {
-    font-family: Arial, sans-serif;
-    width: 80%;
-    padding: 12px;
-    margin-bottom: 20px;
-    background-color: #f3f4f6;
-    background-image: linear-gradient(to bottom, #f3f4f6, #e2e4e6);
-    border: 1px solid #d1d5db;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    color: #2d3748;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
 
-input[type="week"]:focus {
-    outline: none;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(66, 153, 225, 0.5);
-    border: 1px solid #4299e1;
-}
+subheader {
+        font-size: 126px;
+        color: #4a5568;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
 label {
-    font-size: 14px;
+    font-size: 18px;
     color: #4a5568;
     margin-bottom: 10px;
     display: block;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
-input[type="week"]::placeholder {
-    color: #a0aec0;
-}
-
-input[type="week"]:hover {
-    background-color: #e9ecef;
-}
-
     .custom-text-input input {
         border: 2px solid #f0e68c;
         border-radius: 25px;
@@ -401,3 +379,13 @@ input[type="week"]:hover {
         font-weight: bold;
         font-size: 16px;
     }
+
+
+       input[type=submit] {
+        padding: 5px 15px;
+        background: #99e0b2;
+        border: 0 none;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+      }

@@ -1,0 +1,16 @@
+__pycache__
+localsecret.py
+config/localsecret.py
+.streamlit/secrets.toml
+secrets.toml
+vevn
+*.pyc
+*.html
+*.iml
+*.xml
+*.pbix
+evn
+.env
+node_modules
+.idea/workspace.xml
+scripts/__pycache__/functions.cpython-38.pyc

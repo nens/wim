@@ -11,7 +11,7 @@ NAVBAR_PATHS = {
 }
 
 SETTINGS = {
-    'Profiel': 'Profile',
+#    'Profiel': 'Profile',
     'Uitloggen':'uitloggen'
 } #This are the options for in the dropdown menu on the riht of the navbar
 

@@ -7,13 +7,18 @@ def inject_custom_css():
     with open('assets/styles.css') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+
 def get_current_route():
     try:
-        return st.query_params.nav
+        nav_param = st.query_params.nav
+        if nav_param is None or nav_param == 'uitloggen':
+            nav_param = 'invullen'
+            st.query_params.nav = 'invullen'
+        return nav_param
 
     except:
         if "nav" not in st.query_params.to_dict():
-            st.query_params.nav = None
+            st.query_params.nav = 'invullen'
 
 def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH,nav_bool=NAV_BOOL):
     with open(logo_path, "rb") as image_file:
