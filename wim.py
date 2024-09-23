@@ -24,7 +24,7 @@ streamlit_settings = """
         button[title="View fullscreen"]{
             visibility: hidden;}
         .css-z5fcl4{
-            padding-top:0px
+            padding-top:1px
         }
         .st-emotion-cache-z5fcl4{
             padding-top:1px 
