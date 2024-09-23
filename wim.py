@@ -14,7 +14,6 @@ import re
 
 today = datetime.datetime.now()
 
-
 st.set_page_config(page_title="WIM", page_icon=":water:", layout="wide")
 
 streamlit_settings = """
@@ -28,13 +27,11 @@ streamlit_settings = """
             padding-top:0px
         }
         .st-emotion-cache-z5fcl4{
-            padding-top:0px 
+            padding-top:1px 
         }
         </style>
         """
-
 st.markdown(streamlit_settings, unsafe_allow_html=True)
-
 # Configuration settings
 st.set_option('deprecation.showPyplotGlobalUse', False)
 showWarningOnDirectExecution = False
@@ -152,6 +149,8 @@ if nav == 'uitloggen':
     authenticator.logout('logout', 'unrendered', 'home')
     utl.get_current_route()
 if nav == 'invullen':
+    st.write('')
+
     st.subheader(f'Hi {name}, hoe druk ben jij?')
     default_start = today - timedelta(days=today.weekday())  # Monday
     default_end = default_start + timedelta(days=4)  # Friday
@@ -179,6 +178,7 @@ if nav == 'invullen':
 
             
 elif nav == 'overzicht':
+    st.write(read_user_data(username))
     # overzichts pagina
     
     # current week number
