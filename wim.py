@@ -151,7 +151,7 @@ if nav == 'uitloggen':
 if nav == 'invullen':
     st.write('')
 
-    st.subheader(f'Hi {name}, hoe druk ben jij?')
+  #  st.subheader(f'Hi {name}, hoe druk ben jij?')
     default_start = today - timedelta(days=today.weekday())  # Monday
     default_end = default_start + timedelta(days=4)  # Friday
     refresh_value = timedelta(days=7)
