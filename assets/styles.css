@@ -295,6 +295,10 @@ div[role="radiogroup"] label {
 div[role="radiogroup"] {
     gap: 12px;
 }
+.stRadio [role=radiogroup]{
+        align-items: center;
+        justify-content: center;
+}
 
     .full-width-radio {
         display: flex;
