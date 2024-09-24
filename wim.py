@@ -174,7 +174,7 @@ elif nav == 'overzicht':
                 color = '#81d4fa'
                 
             employee_row = {'name': name.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
-        df_current_week.loc[len(df_current_week)] = employee_row
+            df_current_week.loc[len(df_current_week)] = employee_row
         else:
             bad_employees += [employee]
         
