@@ -83,73 +83,24 @@ if nav == 'invullen':
 
     with st.form("my_form"):
         # HTML for week selector with arrows
-        categories = ["🛌 Heel Rustig", "😐 Rustig", "😎 Goed", " 🐝Druk", "🔥Heel druk ", "🚫 Afwezig" ]
+        categories = ["🛌 Heel Rustig", "😐 Rustig", "😎 Goed", " 🐝 Druk", "🔥 Heel druk ", "🚫 Afwezig" ]
         
         selected_category = st.radio("Drukte", categories, index=0, key="category_selector", horizontal=False)
         notes = st.text_input(label='notitie',placeholder="Hier is plek voor jouw 🥚..")
 
         submitted = st.form_submit_button("INVULLEN")
         if submitted:
+            selected_category = selected_category[2:]
+            print(selected_category)
             update_user_data(username, week_numbers, selected_category, notes)
 
             
 elif nav == 'overzicht':
-
-    
-    def streamlit_menu(pages):
-        pages_count = len(pages)
-        grid_icons = pages_count - 1
-        grid_icons_list = ["grid"] * grid_icons
-        icons = ["download"] + grid_icons_list
-
-        selected = option_menu(
-            menu_title=None,  # required
-            options=pages,  # required
-            icons= ['clock','calendar'],  # optional
-            menu_icon="list-task",  # optional
-            default_index=0,  # optional
-            orientation="horizontal",
-            styles={
-                "container": {
-                    "padding": "0!important",
-                    "background-color": menu_colors["background"],
-                },
-                "icon": {"color": menu_colors["text"], "font-size": "20px"},
-                "nav-link": {
-                    "font-size": "16px",
-                    "text-align": "center",
-                    "margin": "0px",
-                    "--hover-color": menu_colors["active_background"],
-                    "color": menu_colors["text"],
-                },
-                "nav-link-selected": {
-                    "background-color": menu_colors["active_background"],
-                    "color": menu_colors["active_text"],
-                },
-            },
-        )
-
-        return selected
-    
-    menu_colors = {
-        "background": "#ffffff",
-        "active_background": "#ffffff",
-        "text": "#002b49",
-        "active_text": "#002b49",
-    }
     st.write('')
     st.write('')
     st.write('')
-    st.write(' ')
     
-    selected = streamlit_menu(['Deze week', 'Volgende week'])
-    
-    import datetime
-    # op basis van weeknummer wordt bij elke werknemer de juiste rij geselecteerd
-    if selected == 'Deze week':
-        week_number = datetime.datetime.now().isocalendar()[1]
-    elif selected == 'Volgende week':
-        week_number = datetime.datetime.now().isocalendar()[1] +1
+    tab1, tab2 = st.tabs([":mantelpiece_clock: Deze week", ":calendar: Volgende week"])
     
     # alle namen
     employees_list = ['alexander',
@@ -174,71 +125,49 @@ elif nav == 'overzicht':
              'taj',
              'wessel']
     
-    df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
-    good_employees = []
-    bad_employees = []
-    for employee in employees_list:
-        # get planning of employee
-        planning_employee = read_user_data(employee)
-        planning_employee_cw = planning_employee.loc[planning_employee['week'] == week_number].reset_index()            
+    
+    
+    import datetime
+    with tab1:
+        current_week_number = datetime.datetime.now().isocalendar()[1]
+        current_week_planning, bad_employees = create_week_planning_team(current_week_number, employees_list)
+        graph_current_week = create_overview_graph(current_week_planning, current_week_number)
         
-        # check if it is filled in
-        filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
-        
+        # place graphic on right spot
+    
+        if not bad_employees:
+            st.markdown("### HAPPY WIM 	:heart_eyes:")
+            st.plotly_chart(graph_current_week, theme="streamlit", use_container_width=True)
+        else:        
+            #implementation of shame list
+            #TODO: make second column for gifjes of shame
+            list_of_emotions = [':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
+            random_emotion = random.choice(list_of_emotions)
+            st.markdown("### SHAME list :frog:")
+            st.markdown(", ".join([f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}" for bad_employee in bad_employees]))
             
-        if filled_in == True:
-            good_employees += [employee]
-            if planning_employee_cw['druk'][0] == 'heel rustig':
-                color = '#9c27b0' 
-            elif planning_employee_cw['druk'][0] == 'rustig':
-                color = '#ec407a'
-            elif planning_employee_cw['druk'][0] == 'goed':
-                color = "#BDDB45"
-            elif planning_employee_cw['druk'][0] == 'druk':
-                color = '#fb8c00'
-            elif planning_employee_cw['druk'][0] == 'te druk':
-                color = '#e53935'
-            else:
-                color = '#81d4fa'
-                
-            employee_row = {'name': name.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
-            df_current_week.loc[len(df_current_week)] = employee_row
-        else:
-            bad_employees += [employee]
+            #plot figure
+            st.plotly_chart(graph_current_week, theme="streamlit", use_container_width=True)
         
-    # Create Horizontal bar chart
-    values = ['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
-
-    fig = go.Figure([go.Bar(x= list(df_current_week['druk']), y=list(df_current_week['name']), 
-                            orientation='h',  # Set orientation to horizontal
-                            hoverinfo='text',  # Enable hover text
-                            hovertext=list(df_current_week['note']),  # Custom hover text
-                            textposition='auto', 
-                            marker=dict(color=list(df_current_week['color'])))])  # give bar of every person a specific color based on drukte
-
-    # Customize the layout (optional)
-    fig.update_layout(title=f'Work in montoring - weeknummer {week_number}',
-                      xaxis=dict(title='', side='top',  # put x-asis on top of plot
-                                 tickvals=values,
-                                 ticktext=values,))
-    fig.update_xaxes(categoryorder='array', categoryarray= values) # zorgt ervoor dat x-axis heeft juiste volgorde
-
-
-
-    # place graphic on right spot
-
-    if not bad_employees:
-        st.markdown("### HAPPY WIM 	:heart_eyes:")
-        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-    else:        
-        #implementation of shame list
-        list_of_emotions = [':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
-        random_emotion = random.choice(list_of_emotions)
-        st.markdown("### SHAME list :frog:")
-        st.markdown(", ".join([f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}" for bad_employee in bad_employees]))
+    with tab2:
+        next_week_number = datetime.datetime.now().isocalendar()[1] +1
+        next_week_planning, bad_employees = create_week_planning_team(next_week_number, employees_list)
+        graph_next_week = create_overview_graph(next_week_planning, next_week_number)
         
-        #plot figure
-        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+        # place graph or next week planning on right spot
+    
+        if not bad_employees:
+            st.markdown("### HAPPY WIM 	:heart_eyes:")
+            st.plotly_chart(graph_next_week, theme="streamlit", use_container_width=True)
+        else:        
+            #implementation of shame list
+            list_of_emotions = [':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
+            random_emotion = random.choice(list_of_emotions)
+            st.markdown("### SHAME list :frog:")
+            st.markdown(", ".join([f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}" for bad_employee in bad_employees]))
+            
+            #plot figure
+            st.plotly_chart(graph_next_week, theme="streamlit", use_container_width=True)
 
 utl.inject_custom_css()
 

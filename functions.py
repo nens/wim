@@ -2,6 +2,8 @@ import re
 import os
 import pandas as pd
 import pickle
+import random
+import plotly.graph_objects as go
 
 def update_user_csv(username, week_numbers, selected_category, notes):
 
@@ -185,4 +187,59 @@ def read_user_data(username):
 
         return pd.DataFrame(columns=['week', 'druk', 'note'])  # Return empty DataFrame if file doesn't exist
 
+# checks all employees files based on list of employees and creates for selected week overview of work pressure of each employee
+# if employee didn't fill form for selected week, it will be listed as bad_employee and shamed in dashboard
+def create_week_planning_team(week_number, employees_list):
+    df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
+    good_employees = []
+    bad_employees = []
+    for employee in employees_list:
+        # get planning of employee
+        planning_employee = read_user_data(employee)
+        planning_employee_cw = planning_employee.loc[planning_employee['week'] == week_number].reset_index()            
+        
+        # check if it is filled in
+        filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
+        
+            
+        if filled_in == True:
+            good_employees += [employee]
+            if planning_employee_cw['druk'][0] == 'Heel Rustig':
+                color = '#9c27b0' 
+            elif planning_employee_cw['druk'][0] == 'Rustig':
+                color = '#ec407a'
+            elif planning_employee_cw['druk'][0] == 'Goed':
+                color = "#BDDB45"
+            elif planning_employee_cw['druk'][0] == 'Druk':
+                color = '#fb8c00'
+            elif planning_employee_cw['druk'][0] == 'Heel druk':
+                color = '#e53935'
+            else:
+                color = '#81d4fa'
+                
+            employee_row = {'name': employee.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
+            df_current_week.loc[len(df_current_week)] = employee_row
+        else:
+            bad_employees += [employee]
+        
+    return df_current_week, bad_employees
+    
+# makes plotly bar chart of employees work planning overview for selected week
+def create_overview_graph(df__week, week_number): 
+    # Create Horizontal bar chart
+    values = ['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
 
+    fig = go.Figure([go.Bar(x= list(df__week['druk']), y=list(df__week['name']), 
+                            orientation='h',  # Set orientation to horizontal
+                            hoverinfo='text',  # Enable hover text
+                            hovertext=list(df__week['note']),  # Custom hover text
+                            textposition='auto', 
+                            marker=dict(color=list(df__week['color'])))])  # give bar of every person a specific color based on drukte
+
+    # Customize the layout (optional)
+    fig.update_layout(title=f'Work in montoring - weeknummer {week_number}',
+                      xaxis=dict(title='', side='top',  # put x-asis on top of plot
+                                 tickvals=values,
+                                 ticktext=values,))
+    fig.update_xaxes(categoryorder='array', categoryarray= values) # zorgt ervoor dat x-axis heeft juiste volgorde
+    return fig
