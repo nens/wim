@@ -87,28 +87,7 @@ if nav == 'invullen':
 
             
 elif nav == 'overzicht':
-    # alle namen
-    employees_list = ['alexander',
-             'boran',
-             'eefje',
-             'esther',
-             'evert',
-             'jan-maarten',
-             'jasper',
-             'jeroen',
-             'joost',
-             'joostH',
-             'kizjè',
-             'leendert',
-             'martijn',
-             'olga',
-             'olof',
-             'philippine',
-             'sjon',
-             'steven',
-             'stijn',
-             'taj',
-             'wessel']
+
     
     def streamlit_menu(pages):
         pages_count = len(pages)
@@ -123,6 +102,24 @@ elif nav == 'overzicht':
             menu_icon="list-task",  # optional
             default_index=0,  # optional
             orientation="horizontal",
+            styles={
+                "container": {
+                    "padding": "0!important",
+                    "background-color": menu_colors["background"],
+                },
+                "icon": {"color": menu_colors["text"], "font-size": "20px"},
+                "nav-link": {
+                    "font-size": "16px",
+                    "text-align": "center",
+                    "margin": "0px",
+                    "--hover-color": menu_colors["active_background"],
+                    "color": menu_colors["text"],
+                },
+                "nav-link-selected": {
+                    "background-color": menu_colors["active_background"],
+                    "color": menu_colors["active_text"],
+                },
+            },
         )
 
         return selected
@@ -137,6 +134,7 @@ elif nav == 'overzicht':
     st.write('')
     st.write('')
     st.write(' ')
+    
     selected = streamlit_menu(['Deze week', 'Volgende week'])
     
     import datetime
@@ -145,6 +143,29 @@ elif nav == 'overzicht':
         week_number = datetime.datetime.now().isocalendar()[1]
     elif selected == 'Volgende week':
         week_number = datetime.datetime.now().isocalendar()[1] +1
+    
+    # alle namen
+    employees_list = ['alexander',
+             'boran',
+             'eefje',
+             'esther',
+             'evert',
+             'jan-maarten',
+             'jasper',
+             'jeroen',
+             'joost',
+             'joostH',
+             'kizje',
+             'leendert',
+             'martijn',
+             'olga',
+             'olof',
+             'philippine',
+             'sjon',
+             'steven',
+             'stijn',
+             'taj',
+             'wessel']
     
     df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
     good_employees = []
