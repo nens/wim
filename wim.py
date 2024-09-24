@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_date_picker import date_range_picker, date_picker, PickerType
+from streamlit_option_menu import option_menu
 import os
 from pathlib import Path
 import pickle
@@ -11,6 +12,8 @@ from datetime import datetime, timedelta
 import datetime
 import pandas as pd
 import re
+import random
+import plotly.graph_objects as go
 
 today = datetime.datetime.now()
 
@@ -180,101 +183,149 @@ if nav == 'invullen':
 
             
 elif nav == 'overzicht':
-    st.write(read_user_data(username))
-    # overzichts pagina
+    # alle namen
+    names = ['alexander',
+             'boran',
+             'eefje',
+             'esther',
+             'evert',
+             'jan-maarten',
+             'jasper',
+             'jeroen',
+             'joost',
+             'joostH',
+             'kizjè',
+             'leendert',
+             'martijn',
+             'olga',
+             'olof',
+             'philippine',
+             'sjon',
+             'steven',
+             'stijn',
+             'taj',
+             'wessel']
     
-    # current week number
-    current_week_number = datetime.datetime.now().isocalendar()[1]
+    def streamlit_menu(pages):
+        pages_count = len(pages)
+        grid_icons = pages_count - 1
+        grid_icons_list = ["grid"] * grid_icons
+        icons = ["download"] + grid_icons_list
+
+        selected = option_menu(
+            menu_title=None,  # required
+            options=pages,  # required
+            icons= ['clock','calendar'],  # optional
+            menu_icon="list-task",  # optional
+            default_index=0,  # optional
+            orientation="horizontal",
+            # styles={
+            #     "container": {
+            #         "padding": "0!important",
+            #         "background-color": menu_colors["background"],
+            #     },
+            #     "icon": {"color": menu_colors["text"], "font-size": "20px"},
+            #     "nav-link": {
+            #         "font-size": "16px",
+            #         "text-align": "center",
+            #         "margin": "0px",
+            #         "--hover-color": menu_colors["active_background"],
+            #         "color": menu_colors["text"],
+            #     },
+            #     "nav-link-selected": {
+            #         "background-color": menu_colors["active_background"],
+            #         "color": menu_colors["active_text"],
+            #     },
+            # },
+        )
+
+        return selected
     
-    folder_path = Path('input_employees')
-    df_current_week = pd.DataFrame(columns=['name', 'druk', 'note'])
+    menu_colors = {
+        "background": "#ffffff",
+        "active_background": "#ffffff",
+        "text": "#002b49",
+        "active_text": "#002b49",
+    }
+    st.write('')
+    st.write('')
+    st.write('')
+    st.write(' ')
+    selected = streamlit_menu(['Deze week', 'Volgende week'])
     
+    import datetime
+    # op basis van weeknummer wordt bij elke werknemer de juiste rij geselecteerd
+    if selected == 'Deze week':
+        week_number = datetime.datetime.now().isocalendar()[1]
+    elif selected == 'Volgende week':
+        week_number = datetime.datetime.now().isocalendar()[1] +1
+    
+    df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
     good_employees = []
     bad_employees = []
-    # Loop through files in the folder
-    for file_path in folder_path.iterdir():
-        # Check if it's a file
-        if file_path.is_file():
-            # get name
-            name = file_path.name.split('.')[0]
-            
-            # get planning of employee
-            planning_employee = pd.read_csv(file_path)
-            planning_employee_cw = planning_employee.loc[planning_employee['week'] == current_week_number].reset_index()            
-            
-            # check if it is filled in
-            #TODO: select from current onwards
-            filled_in = planning_employee_cw['druk'].isin(['afwezog','heel rustig','rustig', 'goed', 'heel goed', 'te druk']).any()
+    for name in names:
+        # get planning of employee
+        planning_employee = read_user_data(name)
+        planning_employee_cw = planning_employee.loc[planning_employee['week'] == week_number].reset_index()            
+        
+        # check if it is filled in
+        filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
+        
+        if filled_in == True:
+            good_employees += [name]
             
             if filled_in == True:
                 good_employees += [name]
-                employee_row = {'name': name, 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0]}
-                df_current_week.loc[len(df_current_week)] = employee_row
-            else:
-                bad_employees += [name]
-
-            
-            
-
-            
-            
-
-
-    # ga naar input_employee path
-    # get all files
-
-
-    # select name of file == person name
-
-    
-    # if yes: voeg toe naar categories
-    # if not: shame list
-
-
-
-
-
-
-
-    import plotly.graph_objects as go
-
-    # Data for the bar chart
-
-    #TODO: deze vullen met lijst van files die zijn ingevuld 
-    categories = ['Eefje', 'Sjon', 'Kizje', 'Evert', 'Martijn']
-
-
-
-
-    values = ['afwezig', 'heel rustig', 'rustig', 'goed', 'heel goed', 'te druk']
-
-
+                if planning_employee_cw['druk'][0] == 'heel rustig':
+                    color = '#9c27b0' 
+                elif planning_employee_cw['druk'][0] == 'rustig':
+                    color = '#ec407a'
+                elif planning_employee_cw['druk'][0] == 'goed':
+                    color = "#BDDB45"
+                elif planning_employee_cw['druk'][0] == 'druk':
+                    color = '#fb8c00'
+                elif planning_employee_cw['druk'][0] == 'te druk':
+                    color = '#e53935'
+                else:
+                    color = '#81d4fa'
+                    
+                employee_row = {'name': name.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
+            df_current_week.loc[len(df_current_week)] = employee_row
+        else:
+            bad_employees += [name]
+        
+    # Create Horizontal bar chart
+    values = ['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
 
     fig = go.Figure([go.Bar(x= list(df_current_week['druk']), y=list(df_current_week['name']), 
                             orientation='h',  # Set orientation to horizontal
                             hoverinfo='text',  # Enable hover text
                             hovertext=list(df_current_week['note']),  # Custom hover text
-                            #text=values,  # Display values on bars
-                            textposition='auto')])  # Position text on bars
+                            textposition='auto', 
+                            marker=dict(color=list(df_current_week['color'])))])  # give bar of every person a specific color based on drukte
 
     # Customize the layout (optional)
-    fig.update_layout(title='Work in montoring',
-                      xaxis=dict(title='', side='top', 
+    fig.update_layout(title=f'Work in montoring - weeknummer {week_number}',
+                      xaxis=dict(title='', side='top',  # put x-asis on top of plot
                                  tickvals=values,
                                  ticktext=values,))
-                      #xaxis_title='Value',
-                      #yaxis_title='Category')
+    fig.update_xaxes(categoryorder='array', categoryarray= values) # zorgt ervoor dat x-axis heeft juiste volgorde
+
 
 
     # place graphic on right spot
-    st.write('')
-    st.write('')
-    st.write('')
+
     if not bad_employees:
+        st.markdown("### HAPPY WIM 	:heart_eyes:")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-    else:
-        st.write('SHAMEEEEE -  mensen die niks hebben ingevuld')
-        st.write(bad_employees)
+    else:        
+        #implementation of shame list
+        list_of_emotions = [	':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
+        random_emotion = random.choice(list_of_emotions)
+        st.markdown("### SHAME list :frog:")
+        st.markdown(", ".join([f"{random.choice(list_of_emotions)} {name.capitalize()}" for name in bad_employees]))
+        
+        #plot figure
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 
