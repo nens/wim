@@ -176,7 +176,7 @@ elif nav == 'overzicht':
         planning_employee_cw = planning_employee.loc[planning_employee['week'] == week_number].reset_index()            
         
         # check if it is filled in
-        filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
+        filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
         
             
         if filled_in == True:
@@ -200,7 +200,7 @@ elif nav == 'overzicht':
             bad_employees += [employee]
         
     # Create Horizontal bar chart
-    values = ['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
+    values = ['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
 
     fig = go.Figure([go.Bar(x= list(df_current_week['druk']), y=list(df_current_week['name']), 
                             orientation='h',  # Set orientation to horizontal
