@@ -2,7 +2,7 @@
 
 # Used to style primary interface elements. It's the color displayed most frequently across your app's
 # screens and components. Examples of widgets using this color are st.slider and st.checkbox.
-primaryColor = "#BDDB45" # blue
+primaryColor = "#BDDB45" # yellowish
 
 # Background color for the main container.
 backgroundColor = "#ECE4B7" # green
@@ -17,3 +17,4 @@ textColor = "#37381d" # black
 # Font family (serif | sans serif | mono) for the page. Will not impact code areas.
 # Default: "sans serif"
 font = "sans serif"
+port=8501

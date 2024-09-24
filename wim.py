@@ -12,9 +12,15 @@ import pandas as pd
 import random
 import plotly.graph_objects as go
 from functions import *
+
+from PIL import Image
+
+im = Image.open('./images/wim_logo.png')
+
+
 today = datetime.datetime.now()
 
-st.set_page_config(page_title="WIM", page_icon=":water:", layout="centered")
+st.set_page_config(page_title="WIM", page_icon=im, layout="wide")
 
 streamlit_settings = """
         <style>
@@ -77,7 +83,8 @@ if nav == 'invullen':
 
     with st.form("my_form"):
         # HTML for week selector with arrows
-        categories = ["Heel Rustig", "Rustig", "Goed", "Druk", "Heel druk", "Afwezig"]
+        categories = ["🛌 Heel Rustig", "😐 Rustig", "😎 Goed", " 🐝Druk", "🔥Heel druk ", "🚫 Afwezig" ]
+        
         selected_category = st.radio("Drukte", categories, index=0, key="category_selector", horizontal=False)
         notes = st.text_input(label='notitie',placeholder="Hier is plek voor jouw 🥚..")
 
