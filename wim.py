@@ -88,7 +88,7 @@ if nav == 'invullen':
             
 elif nav == 'overzicht':
     # alle namen
-    names = ['alexander',
+    employees_list = ['alexander',
              'boran',
              'eefje',
              'esther',
@@ -123,24 +123,6 @@ elif nav == 'overzicht':
             menu_icon="list-task",  # optional
             default_index=0,  # optional
             orientation="horizontal",
-            # styles={
-            #     "container": {
-            #         "padding": "0!important",
-            #         "background-color": menu_colors["background"],
-            #     },
-            #     "icon": {"color": menu_colors["text"], "font-size": "20px"},
-            #     "nav-link": {
-            #         "font-size": "16px",
-            #         "text-align": "center",
-            #         "margin": "0px",
-            #         "--hover-color": menu_colors["active_background"],
-            #         "color": menu_colors["text"],
-            #     },
-            #     "nav-link-selected": {
-            #         "background-color": menu_colors["active_background"],
-            #         "color": menu_colors["active_text"],
-            #     },
-            # },
         )
 
         return selected
@@ -167,36 +149,34 @@ elif nav == 'overzicht':
     df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
     good_employees = []
     bad_employees = []
-    for name in names:
+    for employee in employees_list:
         # get planning of employee
-        planning_employee = read_user_data(name)
+        planning_employee = read_user_data(employee)
         planning_employee_cw = planning_employee.loc[planning_employee['week'] == week_number].reset_index()            
         
         # check if it is filled in
         filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
         
-        if filled_in == True:
-            good_employees += [name]
             
-            if filled_in == True:
-                good_employees += [name]
-                if planning_employee_cw['druk'][0] == 'heel rustig':
-                    color = '#9c27b0' 
-                elif planning_employee_cw['druk'][0] == 'rustig':
-                    color = '#ec407a'
-                elif planning_employee_cw['druk'][0] == 'goed':
-                    color = "#BDDB45"
-                elif planning_employee_cw['druk'][0] == 'druk':
-                    color = '#fb8c00'
-                elif planning_employee_cw['druk'][0] == 'te druk':
-                    color = '#e53935'
-                else:
-                    color = '#81d4fa'
-                    
-                employee_row = {'name': name.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
-            df_current_week.loc[len(df_current_week)] = employee_row
+        if filled_in == True:
+            good_employees += [employee]
+            if planning_employee_cw['druk'][0] == 'heel rustig':
+                color = '#9c27b0' 
+            elif planning_employee_cw['druk'][0] == 'rustig':
+                color = '#ec407a'
+            elif planning_employee_cw['druk'][0] == 'goed':
+                color = "#BDDB45"
+            elif planning_employee_cw['druk'][0] == 'druk':
+                color = '#fb8c00'
+            elif planning_employee_cw['druk'][0] == 'te druk':
+                color = '#e53935'
+            else:
+                color = '#81d4fa'
+                
+            employee_row = {'name': name.capitalize(), 'druk': planning_employee_cw['druk'][0], 'note': planning_employee_cw['note'][0], 'color': color}
+        df_current_week.loc[len(df_current_week)] = employee_row
         else:
-            bad_employees += [name]
+            bad_employees += [employee]
         
     # Create Horizontal bar chart
     values = ['Afwezig', 'Heel rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']
@@ -224,10 +204,10 @@ elif nav == 'overzicht':
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     else:        
         #implementation of shame list
-        list_of_emotions = [	':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
+        list_of_emotions = [':pinched_fingers:', ':man-facepalming:', ':pancakes:', ':angry:', '	:pensive:', '	:unamused:', ':broken_heart:', ':thumbsdown:']
         random_emotion = random.choice(list_of_emotions)
         st.markdown("### SHAME list :frog:")
-        st.markdown(", ".join([f"{random.choice(list_of_emotions)} {name.capitalize()}" for name in bad_employees]))
+        st.markdown(", ".join([f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}" for bad_employee in bad_employees]))
         
         #plot figure
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
