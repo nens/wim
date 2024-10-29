@@ -92,7 +92,7 @@ if nav == 'invullen':
         if submitted:
             selected_category = selected_category[2:]
             print(selected_category)
-            update_user_data(username, week_numbers, selected_category, notes)
+            update_user_csv(username, week_numbers, selected_category, notes)
 
             
 elif nav == 'overzicht':
@@ -130,7 +130,9 @@ elif nav == 'overzicht':
     import datetime
     with tab1:
         current_week_number = datetime.datetime.now().isocalendar()[1]
+        
         current_week_planning, bad_employees = create_week_planning_team(current_week_number, employees_list)
+        #print(current_week_planning)
         graph_current_week = create_overview_graph(current_week_planning, current_week_number)
         
         # place graphic on right spot

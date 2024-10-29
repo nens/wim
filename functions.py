@@ -151,34 +151,20 @@ def read_user_data(username):
 
     # Define the file path based on the username
 
-    pickle_file = f"./input_employees/{username}.pkl"
+    csv_file = f"./input_employees/{username}.csv"
 
 
 
     # Check if the file exists
 
-    if os.path.exists(pickle_file):
-
-        with open(pickle_file, 'rb') as f:
-
-            user_data = pickle.load(f)
+    if os.path.exists(csv_file):
 
 
 
-        # Convert the stored weeks data into a DataFrame
+        user_data = pd.read_csv(csv_file)
 
-        if 'weeks' in user_data:
 
-            df = pd.DataFrame.from_dict(user_data['weeks'], orient='index').reset_index()
-
-            df.columns = ['week', 'druk', 'note']  # Rename columns
-
-            return df
-
-        else:
-
-            return pd.DataFrame(columns=['week', 'druk', 'note'])  # Return empty DataFrame if no weeks data
-
+        return user_data
 
 
     else:
@@ -190,6 +176,7 @@ def read_user_data(username):
 # checks all employees files based on list of employees and creates for selected week overview of work pressure of each employee
 # if employee didn't fill form for selected week, it will be listed as bad_employee and shamed in dashboard
 def create_week_planning_team(week_number, employees_list):
+    print(week_number)
     df_current_week = pd.DataFrame(columns=['name', 'druk', 'note', 'color'])
     good_employees = []
     bad_employees = []
@@ -200,7 +187,6 @@ def create_week_planning_team(week_number, employees_list):
         
         # check if it is filled in
         filled_in = planning_employee_cw['druk'].isin(['Afwezig', 'Heel Rustig', 'Rustig', 'Goed', 'Druk', 'Heel druk']).any()
-        
             
         if filled_in == True:
             good_employees += [employee]
