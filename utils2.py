@@ -63,11 +63,11 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH, nav_bool=NAV_BO
         """
 
         st.markdown(
-            f"""
+            """
             <style>
                 .appview-container .main .block-container {{
-                    padding-top: {0}rem;
-                    padding-bottom: {0}rem;
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
                     }}
                     st.markdown(
 
@@ -116,11 +116,11 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH, nav_bool=NAV_BO
             """
 
         st.markdown(
-            f"""
+            """
                 <style>
                     .appview-container .main .block-container {{
-                        padding-top: {0}rem;
-                        padding-bottom: {0}rem;
+                        padding-top: 0rem;
+                        padding-bottom: 0rem;
                         }}
                         st.markdown(
 
@@ -167,11 +167,11 @@ def navbar_unauthenticated(title=TITLE, logo_path=LOGO_PATH):
     </nav>
     """
     st.markdown(
-        f"""
+        """
         <style>
             .appview-container .main .block-container {{
-                padding-top: {0}rem;
-                padding-bottom: {0}rem;
+                padding-top: 0rem;
+                padding-bottom: 0rem;
                 }}
 
         </style>""",
