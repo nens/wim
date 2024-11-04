@@ -48,10 +48,10 @@ credentials:
       email: olof.baltus@nelen-schuurmans.nl
       name: Olof
       password: Olof # To be replaced with hashed password
-    phillippine:
+    philippine:
       email: phillippine.vantets@nelen-schuurmans.nl
-      name: Phillippine
-      password: Phillippine # To be replaced with hashed password
+      name: Philippine
+      password: Philippine # To be replaced with hashed password
     sjon:
       email: sjon.vandijk@nelen-schuurmans.nl
       name: Sjon
