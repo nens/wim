@@ -33,11 +33,14 @@ def update_user_csv(username, week_numbers, selected_category, notes):
 
         else:
             # Append new week entry
+            new_row = {"week": week, "druk": selected_category, "note": notes}  # Example row
+            df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+            
 
-            df = df.append(
-                {"week": week, "druk": selected_category, "note": notes},
-                ignore_index=True,
-            )
+            # df = df.append(
+            #     {"week": week, "druk": selected_category, "note": notes},
+            #     ignore_index=True,
+            # )
 
     # Save the updated DataFrame back to the CSV file
 
