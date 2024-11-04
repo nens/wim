@@ -32,10 +32,6 @@ credentials:
       email: rbriggs@gmail.com
       name: Joost
       password: Joost # To be replaced with hashed password
-    evert:
-      email: rbriggs@gmail.com
-      name: Evert
-      password: Evert # To be replaced with hashed password
     eefje:
       email: rbriggs@gmail.com
       name: Eefje
