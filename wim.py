@@ -5,7 +5,6 @@ import utils2 as utl
 import yaml
 from yaml.loader import SafeLoader
 from datetime import datetime, timedelta
-import datetime
 import random
 from functions import *
 
