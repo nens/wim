@@ -130,7 +130,7 @@ elif nav == "overzicht":
         "jan-maarten",
         "jasper",
         "jeroen",
-        "joost",
+        "joostD",
         "joostH",
         "kizje",
         "leendert",
