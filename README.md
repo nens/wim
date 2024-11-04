@@ -1,4 +1,4 @@
-## WIM (Werkdruk Inzicht en Monitor) 
+## WIM (Werkdruk Inzicht en Monitor)
 Testing phase -- voor al uw inzicht in wie wanneer druk is binnen WIO
 
 ## Toevoegen van nieuwe collega's

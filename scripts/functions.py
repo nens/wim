@@ -7,6 +7,7 @@ def colored_widget_block_text(color, content):
     styled_content = f'<div style="background-color: {color}; padding: 10px; border-radius: 5px;">{content}</div>'
     st.markdown(styled_content, unsafe_allow_html=True)
 
+
 def colored_widget_block_checkbox(
     color,
     content,
@@ -16,7 +17,9 @@ def colored_widget_block_checkbox(
     font_style="normal",
 ):
     # Apply CSS styling to create a colored widget block
-    styled_content = f'<div style="background-color: {color}; padding: 10px; border-radius: 5px;">'
+    styled_content = (
+        f'<div style="background-color: {color}; padding: 10px; border-radius: 5px;">'
+    )
     styled_content += f'<p style="font-size: {font_size}; color: {font_color}; font-style: {font_style};">{content}</p>'
 
     for option in checkbox_options:
@@ -82,7 +85,6 @@ def streamlit_menu(example=1):
         return selected
 
 
-
 def widget_block(title, text, bg_color):
     """
     Display a widget block with a title, text, and background color.
@@ -111,11 +113,14 @@ def widget_block(title, text, bg_color):
 
     # Display the widget block
     st.markdown(block_style, unsafe_allow_html=True)
-    st.write(f'<div class="widget-block"><div class="widget-block-title">{title}</div>{text}</div>', unsafe_allow_html=True)
+    st.write(
+        f'<div class="widget-block"><div class="widget-block-title">{title}</div>{text}</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def color_selectbox(n_element: int, color: str):
-    js = f'''
+    js = f"""
     <script>
     // Find all the selectboxes
     var selectboxes = window.parent.document.getElementsByClassName("stSelectbox");
@@ -129,15 +134,18 @@ def color_selectbox(n_element: int, color: str):
     // Modify the color
     selectregion.style.backgroundColor = '{color}';
     </script>
-    '''
+    """
     st.components.v1.html(js, height=0)
 
-#%%
+
+# %%
+
 
 def display_legend(legend_dict, header_title="Legend", icon_class="fas fa-database"):
-    #st.text(header_title)
+    # st.text(header_title)
     for category, color in legend_dict.items():
-        st.markdown(f'''
+        st.markdown(
+            f"""
             <div style="
                 display: inline-flex;
                 align-items: center;
@@ -159,12 +167,16 @@ def display_legend(legend_dict, header_title="Legend", icon_class="fas fa-databa
                 </div>
                 <span>{category}</span>
             </div>
-        ''', unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
+
 
 def display_line_legend(legend_dict, header_title="Legend"):
-  #  st.markdown(f"### {header_title}")
+    #  st.markdown(f"### {header_title}")
     for category, color in legend_dict.items():
-        st.markdown(f'''
+        st.markdown(
+            f"""
             <div style="
                 display: inline-flex;
                 align-items: center;
@@ -182,14 +194,18 @@ def display_line_legend(legend_dict, header_title="Legend"):
                 </div>
                 <span>{category}</span>
             </div>
-        ''', unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
+
 
 def create_custom_box(title, text, icon, background_color="#f0f0f0"):
     # Include the Font Awesome CSS
     font_awesome_css = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">'
     st.markdown(font_awesome_css, unsafe_allow_html=True)
 
-    st.markdown(f'''
+    st.markdown(
+        f"""
         <div style="
             position: relative;
             background-color: {background_color};
@@ -219,33 +235,47 @@ def create_custom_box(title, text, icon, background_color="#f0f0f0"):
             </div>
             <p style="margin-top: 10px;">{text}</p>
         </div>
-    ''', unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
+
 
 def display_expander_content(locs, df, expander_index, var):
     expander_key = f"expander_{expander_index}"
     if expander_key not in st.session_state:
         st.session_state[expander_key] = False
 
-    expander = st.expander(f"Meetlocatie {expander_index}", expanded=st.session_state[expander_key])
+    expander = st.expander(
+        f"Meetlocatie {expander_index}", expanded=st.session_state[expander_key]
+    )
 
     with expander:
         if st.session_state[expander_key] is False:
             st.session_state[expander_key] = True
 
         if st.session_state[expander_key]:
-            selected_location_name = st.selectbox(f'Selecteer de meetlocatie {expander_index}',
-                                                  locs['name'])
+            selected_location_name = st.selectbox(
+                f"Selecteer de meetlocatie {expander_index}", locs["name"]
+            )
 
-            selected_location_code = \
-                locs.loc[
-                    locs['name'] == selected_location_name, 'code'].iloc[0]
+            selected_location_code = locs.loc[
+                locs["name"] == selected_location_name, "code"
+            ].iloc[0]
 
-            if var == 'groundwater':
-                plot_timeseries_with_percentiles(df, selected_location_code, title=selected_location_name,
-                                                 ylabel='Grondwaterniveau (mNAP)')
+            if var == "groundwater":
+                plot_timeseries_with_percentiles(
+                    df,
+                    selected_location_code,
+                    title=selected_location_name,
+                    ylabel="Grondwaterniveau (mNAP)",
+                )
             else:
-                plot_timeseries_with_phases(df, selected_location_code, title=selected_location_name,
-                                            ylabel='Afvoer debiet m3/s')
+                plot_timeseries_with_phases(
+                    df,
+                    selected_location_code,
+                    title=selected_location_name,
+                    ylabel="Afvoer debiet m3/s",
+                )
 
 
 def hover_popup(bold_text, icon_html, popup_text):
