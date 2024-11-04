@@ -15,3 +15,13 @@ do those checks + automatic fixes locally, install "pre-commit" and run it:
 
     $ pip install pre-commit  # You only need to do this once on your laptop
     $ pre-commit run --all    # This runs checks + formatting
+
+
+## Server install
+
+Installed via the regular dashboard auto-update setup.
+
+Custom: the `/app/input_employees/` directory is a docker volume on the server, so it is
+retained upon restarts. This also means that changes in the `input_employees/` directory
+in this git repository are **not** synced to the directory on the server. (Apart from
+initially copying over the files when the volume on the server is created).
