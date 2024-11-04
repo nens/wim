@@ -32,7 +32,7 @@ credentials:
       email: jeroen.dekoning@nelen-schuurmans.nl
       name: Jeroen
       password: Jeroen # To be replaced with hashed password
-    joost:
+    joostD:
       email: joost.vandijk@nelen-schuurmans.nl
       name: JoostD
       password: JoostD # To be replaced with hashed password
