@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # SETTINGS
 TITLE = ""
 LOGO_PATH = "./images/wim_logo.png"

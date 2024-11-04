@@ -240,42 +240,44 @@ def create_custom_box(title, text, icon, background_color="#f0f0f0"):
     )
 
 
-def display_expander_content(locs, df, expander_index, var):
-    expander_key = f"expander_{expander_index}"
-    if expander_key not in st.session_state:
-        st.session_state[expander_key] = False
+# Commented out by Reinout, seems not to be in use ("undefined plot_timeseries_with_percentiles")?
+#
+# def display_expander_content(locs, df, expander_index, var):
+#     expander_key = f"expander_{expander_index}"
+#     if expander_key not in st.session_state:
+#         st.session_state[expander_key] = False
 
-    expander = st.expander(
-        f"Meetlocatie {expander_index}", expanded=st.session_state[expander_key]
-    )
+#     expander = st.expander(
+#         f"Meetlocatie {expander_index}", expanded=st.session_state[expander_key]
+#     )
 
-    with expander:
-        if st.session_state[expander_key] is False:
-            st.session_state[expander_key] = True
+#     with expander:
+#         if st.session_state[expander_key] is False:
+#             st.session_state[expander_key] = True
 
-        if st.session_state[expander_key]:
-            selected_location_name = st.selectbox(
-                f"Selecteer de meetlocatie {expander_index}", locs["name"]
-            )
+#         if st.session_state[expander_key]:
+#             selected_location_name = st.selectbox(
+#                 f"Selecteer de meetlocatie {expander_index}", locs["name"]
+#             )
 
-            selected_location_code = locs.loc[
-                locs["name"] == selected_location_name, "code"
-            ].iloc[0]
+#             selected_location_code = locs.loc[
+#                 locs["name"] == selected_location_name, "code"
+#             ].iloc[0]
 
-            if var == "groundwater":
-                plot_timeseries_with_percentiles(
-                    df,
-                    selected_location_code,
-                    title=selected_location_name,
-                    ylabel="Grondwaterniveau (mNAP)",
-                )
-            else:
-                plot_timeseries_with_phases(
-                    df,
-                    selected_location_code,
-                    title=selected_location_name,
-                    ylabel="Afvoer debiet m3/s",
-                )
+#             if var == "groundwater":
+#                 plot_timeseries_with_percentiles(
+#                     df,
+#                     selected_location_code,
+#                     title=selected_location_name,
+#                     ylabel="Grondwaterniveau (mNAP)",
+#                 )
+#             else:
+#                 plot_timeseries_with_phases(
+#                     df,
+#                     selected_location_code,
+#                     title=selected_location_name,
+#                     ylabel="Afvoer debiet m3/s",
+#                 )
 
 
 def hover_popup(bold_text, icon_html, popup_text):

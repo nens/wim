@@ -1,7 +1,8 @@
-import re
 import os
-import pandas as pd
 import pickle
+import re
+
+import pandas as pd
 import plotly.graph_objects as go
 
 
@@ -143,7 +144,7 @@ def create_week_planning_team(week_number, employees_list):
             .any()
         )
 
-        if filled_in == True:
+        if filled_in:
             good_employees += [employee]
             if planning_employee_cw["druk"][0] == "Heel Rustig":
                 color = "#9c27b0"

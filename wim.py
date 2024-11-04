@@ -1,15 +1,20 @@
+import random
+from datetime import datetime, timedelta
+
 import streamlit as st
 import streamlit_authenticator as stauth
-from streamlit_date_picker import date_range_picker, PickerType
-import utils2 as utl
 import yaml
-from yaml.loader import SafeLoader
-from datetime import datetime, timedelta
-import datetime
-import random
-from functions import *
-
 from PIL import Image
+from streamlit_date_picker import PickerType, date_range_picker
+from yaml.loader import SafeLoader
+
+import utils2 as utl
+from functions import (
+    create_overview_graph,
+    create_week_planning_team,
+    extract_weeks,
+    update_user_csv,
+)
 
 im = Image.open("./images/wim_logo.png")
 
@@ -235,9 +240,9 @@ utl.inject_custom_css()
 
 if authentication_status:
     utl.navbar_authenticated(name)
-elif authentication_status == False:
+elif authentication_status is False:
     utl.navbar_unauthenticated()
     st.error("Username/password is incorrect")
-elif authentication_status == None:
+elif authentication_status is None:
     utl.navbar_unauthenticated()
     st.warning("Please enter your username and password")

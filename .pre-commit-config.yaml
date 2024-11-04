@@ -11,14 +11,14 @@ repos:
         args: [--allow-multiple-documents]
       - id: check-toml
       - id: check-added-large-files
-
-### Extra lines below are preserved ###
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.4.2
+    rev: v0.1.13
     hooks:
       # Run the linter.
       - id: ruff
         args: ["--fix"]
       # Run the formatter.
       - id: ruff-format
+
+### Extra lines below are preserved ###
