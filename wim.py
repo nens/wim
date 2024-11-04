@@ -9,7 +9,12 @@ from streamlit_date_picker import PickerType, date_range_picker
 from yaml.loader import SafeLoader
 
 import utils2 as utl
-from functions import *
+from functions import (
+    create_overview_graph,
+    create_week_planning_team,
+    extract_weeks,
+    update_user_csv,
+)
 
 im = Image.open("./images/wim_logo.png")
 
