@@ -235,9 +235,9 @@ utl.inject_custom_css()
 
 if authentication_status:
     utl.navbar_authenticated(name)
-elif authentication_status == False:
+elif authentication_status is False:
     utl.navbar_unauthenticated()
     st.error("Username/password is incorrect")
-elif authentication_status == None:
+elif authentication_status is None:
     utl.navbar_unauthenticated()
     st.warning("Please enter your username and password")

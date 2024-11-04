@@ -28,7 +28,7 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH, nav_bool=NAV_BO
 
     current_route = get_current_route()
 
-    if nav_bool == True:
+    if nav_bool:
         navbar_items = ""
         for key, value in NAVBAR_PATHS.items():
             if value == current_route:
