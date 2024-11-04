@@ -1,9 +1,5 @@
 credentials:
   usernames:
-    esther:
-      email: esther.vanderlaan@nelen-schuurmans.nl
-      name: Esther
-      password: Esther # To be replaced with hashed password
     alexander:
       email: alexander.hoff@nelen-schuurmans.nl
       name: Alexander
@@ -12,38 +8,58 @@ credentials:
       email: boran.aydin@nelen-schuurmans.nl
       name: Boran
       password: Boran # To be replaced with hashed password
+    eefje:
+      email: eefje.benschop@nelen-schuurmans.nl
+      name: Eefje
+      password: Eefje # To be replaced with hashed password
+    esther:
+      email: esther.vanderlaan@nelen-schuurmans.nl
+      name: Esther
+      password: Esther # To be replaced with hashed password
     evert:
-      email: rbriggs@gmail.com
+      email: evert.wielsma@nelen-schuurmans.nl
       name: Evert
       password: Evert # To be replaced with hashed password
     janmaarten:
-      email: rbriggs@gmail.com
+      email: janmaarten.verbree@nelen-schuurmans.nl
       name: Jan-Maarten
       password: Jan-Maarten # To be replaced with hashed password
     jasper:
-      email: rbriggs@gmail.com
+      email: jasper.vanlieshout@nelen-schuurmans.nl
       name: Jasper
       password: Jasper # To be replaced with hashed password
     jeroen:
-      email: rbriggs@gmail.com
+      email: jeroen.dekoning@nelen-schuurmans.nl
       name: Jeroen
       password: Jeroen # To be replaced with hashed password
     joost:
-      email: rbriggs@gmail.com
-      name: Joost
-      password: Joost # To be replaced with hashed password
-    eefje:
-      email: rbriggs@gmail.com
-      name: Eefje
-      password: Eefje # To be replaced with hashed password
+      email: joost.vandijk@nelen-schuurmans.nl
+      name: JoostD
+      password: JoostD # To be replaced with hashed password
+    joosth:
+      email: joost.vanderhammen@nelen-schuurmans.nl
+      name: JoostH
+      password: JoostH # To be replaced with hashed password
     kizje:
-      email: rbriggs@gmail.com
+      email: kizje.marif@nelen-schuurmans.nl
       name: Kizje
       password: Kizje # To be replaced with hashed password
+    leendert:
+      email: leendert.vanwolfswinkel@nelen-schuurmans.nl
+      name: Leendert
+      password: Leendert # To be replaced with hashed password
     martijn:
       email: martijn.krol@nelen-schuurmans.nl
       name: Martijn
       password: Martijn # To be replaced with hashed password
+    mats:
+      email: mats.kerver@nelen-schuurmans.nl
+      name: Mats
+      password: Mats # To be replaced with hashed password
+    olga:
+      email: olga.pleumeekers@nelen-schuurmans.nl
+      name: Olga
+      password: Olga # To be replaced with hashed password
     olof:
       email: olof.baltus@nelen-schuurmans.nl
       name: Olof
@@ -64,6 +80,10 @@ credentials:
       email: stijn.overmeen@nelen-schuurmans.nl
       name: Stijn
       password: Stijn # To be replaced with hashed password
+    sven:
+      email: stijn.overmeen@nelen-schuurmans.nl
+      name: Sven
+      password: Sven # To be replaced with hashed password
     wessel:
       email: wessel.copier@nelen-schuurmans.nl
       name: Wessel
