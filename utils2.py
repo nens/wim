@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 from streamlit.components.v1 import html
-from SETTINGS import *
+from SETTINGS import SETTINGS, TITLE, LOGO_PATH, NAV_BOOL, NAVBAR_PATHS
 
 
 def inject_custom_css():
