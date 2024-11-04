@@ -36,7 +36,7 @@ credentials:
       email: joost.vandijk@nelen-schuurmans.nl
       name: JoostD
       password: JoostD # To be replaced with hashed password
-    joosth:
+    joostH:
       email: joost.vanderhammen@nelen-schuurmans.nl
       name: JoostH
       password: JoostH # To be replaced with hashed password
