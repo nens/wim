@@ -1,5 +1,5 @@
+import datetime
 import random
-from datetime import datetime, timedelta
 
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -68,9 +68,9 @@ if nav == "uitloggen":
 if nav == "invullen":
     st.header("")
 
-    default_start = today - timedelta(days=today.weekday())  # Monday
-    default_end = default_start + timedelta(days=4)  # Friday
-    refresh_value = timedelta(days=7)
+    default_start = today - datetime.timedelta(days=today.weekday())  # Monday
+    default_end = default_start + datetime.timedelta(days=4)  # Friday
+    refresh_value = datetime.timedelta(days=7)
 
     date_range_string = date_range_picker(
         picker_type=PickerType.week,
@@ -144,8 +144,6 @@ elif nav == "overzicht":
         "taj",
         "wessel",
     ]
-
-    import datetime
 
     with tab1:
         current_week_number = datetime.datetime.now().isocalendar()[1]
