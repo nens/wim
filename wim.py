@@ -1,14 +1,15 @@
+import random
+from datetime import datetime, timedelta
+
 import streamlit as st
 import streamlit_authenticator as stauth
-from streamlit_date_picker import date_range_picker, PickerType
-import utils2 as utl
 import yaml
-from yaml.loader import SafeLoader
-from datetime import datetime, timedelta
-import random
-from functions import *
-
 from PIL import Image
+from streamlit_date_picker import PickerType, date_range_picker
+from yaml.loader import SafeLoader
+
+import utils2 as utl
+from functions import *
 
 im = Image.open("./images/wim_logo.png")
 

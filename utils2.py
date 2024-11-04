@@ -1,7 +1,9 @@
-import streamlit as st
 import base64
+
+import streamlit as st
 from streamlit.components.v1 import html
-from SETTINGS import SETTINGS, TITLE, LOGO_PATH, NAV_BOOL, NAVBAR_PATHS
+
+from SETTINGS import LOGO_PATH, NAV_BOOL, NAVBAR_PATHS, SETTINGS, TITLE
 
 
 def inject_custom_css():
@@ -17,7 +19,7 @@ def get_current_route():
             st.query_params.nav = "invullen"
         return nav_param
 
-    except:
+    except:  # noqa: E722
         if "nav" not in st.query_params.to_dict():
             st.query_params.nav = "invullen"
 
@@ -61,18 +63,18 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH, nav_bool=NAV_BO
         """
 
         st.markdown(
-            """
+            f"""
             <style>
                 .appview-container .main .block-container {{
-                    padding-top: {padding_top}rem;
-                    padding-bottom: {padding_bottom}rem;
+                    padding-top: {0}rem;
+                    padding-bottom: {0}rem;
                     }}
                     st.markdown(
 
                 }}
             unsafe_allow_html=True,
         )
-            </style>""".format(padding_top=0, padding_bottom=0),
+            </style>""",
             unsafe_allow_html=True,
         )
         st.markdown(component, unsafe_allow_html=True)
@@ -114,18 +116,18 @@ def navbar_authenticated(name, title=TITLE, logo_path=LOGO_PATH, nav_bool=NAV_BO
             """
 
         st.markdown(
-            """
+            f"""
                 <style>
                     .appview-container .main .block-container {{
-                        padding-top: {padding_top}rem;
-                        padding-bottom: {padding_bottom}rem;
+                        padding-top: {0}rem;
+                        padding-bottom: {0}rem;
                         }}
                         st.markdown(
 
                     }}
                 unsafe_allow_html=True,
             )
-                </style>""".format(padding_top=0, padding_bottom=0),
+                </style>""",
             unsafe_allow_html=True,
         )
         st.markdown(component, unsafe_allow_html=True)
@@ -165,14 +167,14 @@ def navbar_unauthenticated(title=TITLE, logo_path=LOGO_PATH):
     </nav>
     """
     st.markdown(
-        """
+        f"""
         <style>
             .appview-container .main .block-container {{
-                padding-top: {padding_top}rem;
-                padding-bottom: {padding_bottom}rem;
+                padding-top: {0}rem;
+                padding-bottom: {0}rem;
                 }}
 
-        </style>""".format(padding_top=0, padding_bottom=0),
+        </style>""",
         unsafe_allow_html=True,
     )
     st.markdown(component, unsafe_allow_html=True)
