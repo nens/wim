@@ -14,6 +14,7 @@ from functions import (
     update_user_csv,
 )
 from time import time
+from qoutes import list_bad_qoutes
 
 im = Image.open("./images/wim_logo.png")
 
@@ -63,7 +64,8 @@ if authentication_status:
     utl.navbar_authenticated(name)
     nav = (st.query_params.get("nav"))
     if nav == "invullen":
-        st.header("")
+        qoute = random.choice(list_bad_qoutes)
+        st.header(qoute)
         default_start = today -timedelta(days=today.weekday())  # Monday
         default_end = default_start - timedelta(days=4)  # Friday
         refresh_value = timedelta(days=7)
