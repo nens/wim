@@ -50,6 +50,7 @@ def read_yaml():
         config = yaml.load(file, Loader=SafeLoader)
     return config
 
+
 config = read_yaml()
 authenticator = stauth.Authenticate(
     config["credentials"],
