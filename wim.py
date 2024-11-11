@@ -77,11 +77,11 @@ if nav == "invullen":
         start=default_start,
         end=default_end,
         key="week_range_picker",
-        refresh_button={
-            "is_show": False,
-            "button_name": "Refresh Last 1 Week",
-            "refresh_value": refresh_value,
-        },
+        # refresh_button={
+        #     "is_show": False,
+        #     "button_name": "Refresh Last 1 Week",
+        #     "refresh_value": refresh_value,
+        # },
     )
 
     if date_range_string:
