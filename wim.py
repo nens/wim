@@ -107,10 +107,26 @@ if nav == "invullen":
         )
 
         submitted = st.form_submit_button("INVULLEN")
-        if submitted:
-            selected_category = selected_category[2:]
-            print(selected_category)
-            update_user_csv(username, week_numbers, selected_category, notes)
+    if submitted:
+        selected_category = selected_category[2:]
+        print(selected_category)
+        update_user_csv(username, week_numbers, selected_category, notes)
+        st.write(f'{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen.')
+        st.write('Geniet van je week!')
+
+        # next_week_button = st.button('Vul hier meteen ook voor volgende week in')
+        
+        # if next_week_button:
+        #     submitted = st.form_submit_button("INVULLEN")
+        #     if submitted:
+        #         if weeknumbers == 52:
+        #             weeknumber = 1
+        #         else:
+        #             week_numbers += 1
+        #         selected_category = selected_category[2:]
+        #         print(selected_category)
+        #         update_user_csv(username, week_numbers, selected_category, notes)
+        #         st.write(f'{username}, je bent nu al lekker bezig, bedankt voor het invullen van jou drukte voor de komende twee weken!')
 
 
 elif nav == "overzicht":

@@ -1,6 +1,7 @@
 import os
 import pickle
 import re
+import streamlit as st
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -118,11 +119,13 @@ def read_user_data(username):
 
     if os.path.exists(csv_file):
         user_data = pd.read_csv(csv_file)
+        st.write(csv_file)
 
         return user_data
 
     else:
-        print("No data found for this user.")
+        st.write(f'{username}')
+        print(f"No data found for {username}")
 
         return pd.DataFrame(
             columns=["week", "druk", "note"]
@@ -132,7 +135,7 @@ def read_user_data(username):
 # checks all employees files based on list of employees and creates for selected week overview of work pressure of each employee
 # if employee didn't fill form for selected week, it will be listed as bad_employee and shamed in dashboard
 def create_week_planning_team(week_number, employees_list):
-    print(week_number)
+    #print(employees_list)
     df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
     good_employees = []
     bad_employees = []
