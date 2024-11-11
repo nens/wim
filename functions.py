@@ -178,7 +178,7 @@ def create_week_planning_team(week_number, employees_list):
 
     return df_current_week, bad_employees
 
-@st.cache_data(ttl='1d')  # Only run this query once
+
 def create_week_planning_team(week_number, employees_list):
     #print(employees_list)
     df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
