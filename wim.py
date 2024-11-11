@@ -95,7 +95,7 @@ if nav == "invullen":
             "😐 Rustig",
             "😎 Goed",
             "🐝 Druk",
-            "🔥 Heel druk ",
+            "🔥 Heel druk",
             "🚫 Afwezig",
         ]
 
