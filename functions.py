@@ -1,8 +1,6 @@
 import os
 import pickle
 import re
-import streamlit as st
-
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -47,7 +45,7 @@ def update_user_csv(username, week_numbers, selected_category, notes):
             # )
 
     # Save the updated DataFrame back to the CSV file
-    
+
 
     df.to_csv(csv_file, index=False)
 
