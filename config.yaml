@@ -1,102 +1,75 @@
+cookie:
+  expiry_days: 360
+  key: random_signature_key
+  name: random_cookie_name
 credentials:
   usernames:
     alexander:
-      email: alexander.hoff@nelen-schuurmans.nl
       name: Alexander
-      password: Alexander # To be replaced with hashed password
+      password: $2b$12$sLLBSeStFIBOKjm9s1DqM.a2TmAdqfx/xi.TvDj954HBl.hhZ8uIy
     boran:
-      email: boran.aydin@nelen-schuurmans.nl
       name: Boran
-      password: Boran # To be replaced with hashed password
+      password: $2b$12$eGuTAFGMkYLCmFVUXijL3OsTYcGXIVKBQ0zZYf9mmVCvx6uaQV2Ne
     eefje:
-      email: eefje.benschop@nelen-schuurmans.nl
       name: Eefje
-      password: Eefje # To be replaced with hashed password
+      password: $2b$12$tb0JTdAKfc02N0DCA7imUOWgtq/u04SEcbrYDer3BxQ5TDrJyYdVe
     esther:
-      email: esther.vanderlaan@nelen-schuurmans.nl
       name: Esther
-      password: Esther # To be replaced with hashed password
+      password: $2b$12$07zSPYmVoYVyV.aNfz25O.OAkvJzMwfDu6D1GmDxdAHusimzkIe9.
     evert:
-      email: evert.wielsma@nelen-schuurmans.nl
       name: Evert
-      password: Evert # To be replaced with hashed password
+      password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC
     janmaarten:
-      email: janmaarten.verbree@nelen-schuurmans.nl
       name: Jan-Maarten
-      password: Jan-Maarten # To be replaced with hashed password
+      password: $2b$12$azsjrU55wXisn6rVnQf9OuZ4axtdDXDJE2L/EUABy.snos7fxMGbm
     jasper:
-      email: jasper.vanlieshout@nelen-schuurmans.nl
       name: Jasper
-      password: Jasper # To be replaced with hashed password
+      password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
     jeroen:
-      email: jeroen.dekoning@nelen-schuurmans.nl
       name: Jeroen
-      password: Jeroen # To be replaced with hashed password
+      password: $2b$12$UVXZ9FzgtyafShHpnVfU1OpzKgj.j5LEuBWHoppvgLJjdkaQkcHDm
     joostD:
-      email: joost.vandijk@nelen-schuurmans.nl
       name: JoostD
-      password: JoostD # To be replaced with hashed password
+      password: $2b$12$HEldi4knRMic4/2Gq0qdKO9DGzlfy1KCmJNdeCB/z4nBB4/.pkdbW
     joostH:
-      email: joost.vanderhammen@nelen-schuurmans.nl
       name: JoostH
-      password: JoostH # To be replaced with hashed password
+      password: $2b$12$kbXdzqpLC/V4oXRE9B7DyuM637VBsK2y66vH8QUrLtBec2wlooCmG
     kizje:
-      email: kizje.marif@nelen-schuurmans.nl
       name: Kizje
-      password: Kizje # To be replaced with hashed password
+      password: $2b$12$D1qQLQDMUagAZblmizBmmeSX0RW0t07h1uivKGS.v.vbbA5AHwTJe
     leendert:
-      email: leendert.vanwolfswinkel@nelen-schuurmans.nl
       name: Leendert
-      password: Leendert # To be replaced with hashed password
+      password: $2b$12$f5nFTXjN0UhNDOhlTZLIf.WQ/AZKqdQPSEpHP6RTyUAPz95tZiLBi
     martijn:
-      email: martijn.krol@nelen-schuurmans.nl
       name: Martijn
-      password: Martijn # To be replaced with hashed password
+      password: $2b$12$a99iz36jUE9QgoYG06Defu31DwRZsrQDO4luFm14MH3rynKEyhW.u
     mats:
-      email: mats.kerver@nelen-schuurmans.nl
       name: Mats
-      password: Mats # To be replaced with hashed password
+      password: $2b$12$ypcpyEjrSorYifL7SUKhxeDKJ6ETINbHQ9nnrOsi8PuHCy8zjqhwS
     olga:
-      email: olga.pleumeekers@nelen-schuurmans.nl
       name: Olga
-      password: Olga # To be replaced with hashed password
+      password: $2b$12$uwjl.KuKHQ.1Om2Y6pplrOFBkTZvaebhjd3F07WHkezHWsC2qp91m
     olof:
-      email: olof.baltus@nelen-schuurmans.nl
       name: Olof
-      password: Olof # To be replaced with hashed password
+      password: $2b$12$E0FtCK4Xv.RLFqubyT7Ovew0dDqZTr7g9iVqI1QyLsZWR4YCSAhVG
     philippine:
-      email: phillippine.vantets@nelen-schuurmans.nl
       name: Philippine
-      password: Philippine # To be replaced with hashed password
+      password: $2b$12$hdZA8f29NmQfLjvkr3y.qevEJLL6XhI4Owyedu9FamReqx3rVxyUm
     sjon:
-      email: sjon.vandijk@nelen-schuurmans.nl
       name: Sjon
-      password: Sjon # To be replaced with hashed password
+      password: $2b$12$GCXXnmYL3uLiGa//DU4ov.aSH5HfL0npb4MxLJQNrBe6sdsCbtlHC
     steven:
-      email: steven.hosper@nelen-schuurmans.nl
       name: Steven
-      password: Steven # To be replaced with hashed password
+      password: $2b$12$Cj3CK/DSe7hbNNNDz/8K3eeuWo99hzLE/mmz66vDn/JJUOcKVyC4y
     stijn:
-      email: stijn.overmeen@nelen-schuurmans.nl
       name: Stijn
-      password: Stijn # To be replaced with hashed password
+      password: $2b$12$EBYx87l9TYrJUpgtK0Hkm.R9OH674HsTWu.x0J7AGIxwgB1r8IgPe
     sven:
-      email: stijn.overmeen@nelen-schuurmans.nl
       name: Sven
-      password: Sven # To be replaced with hashed password
-    wessel:
-      email: wessel.copier@nelen-schuurmans.nl
-      name: Wessel
-      password: Wessel # To be replaced with hashed password
+      password: $2b$12$62R3ZqYJq6MjtP2mO90zZ.eByJ44IPb1/Q2Qk5D0nzvG6m2XFHUJS
     taj:
-      email: taj.devries@nelen-schuurmans.nl
       name: Taj
-      password: Taj # To be replaced with hashed password
-
-cookie:
-  expiry_days: 360
-  key: random_signature_key # Must be string
-  name: random_cookie_name
-preauthorized:
-  emails:
-  - melsby@gmail.com
+      password: $2b$12$ELSIU26JTDAs53K.ylV/O.uwUWXmNMIqTE6SH.fPTt1bF6QeCfZXe
+    wessel:
+      name: Wessel
+      password: $2b$12$oIPIV7blWubrmBRL0p4/..DXwuVY.SydGNvzVPt3F.zR2EQTiVAny

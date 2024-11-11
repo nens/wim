@@ -1,13 +1,11 @@
-import datetime
+from datetime import datetime, timedelta
 import random
-
 import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 from PIL import Image
 from streamlit_date_picker import PickerType, date_range_picker
 from yaml.loader import SafeLoader
-
 import utils2 as utl
 from functions import (
     create_overview_graph,
@@ -15,11 +13,12 @@ from functions import (
     extract_weeks,
     update_user_csv,
 )
+from time import time
 
 im = Image.open("./images/wim_logo.png")
 
 
-today = datetime.datetime.now()
+today = datetime.now()
 
 st.set_page_config(page_title="WIM", page_icon=im, layout="wide")
 
@@ -39,38 +38,35 @@ streamlit_settings = """
         </style>
         """
 
+
+
 st.markdown(streamlit_settings, unsafe_allow_html=True)
 # Configuration settings
-st.set_option("deprecation.showPyplotGlobalUse", False)
 showWarningOnDirectExecution = False
 
-hashed_passwords = stauth.Hasher(["abc", "def"]).generate()
+st.cache_resource(show_spinner=False)
+def read_yaml():
+    with open('./config.yaml') as file:
+        config = yaml.load(file, Loader=SafeLoader)
+    return config
 
-with open("./config.yaml") as file:
-    config = yaml.load(file, Loader=SafeLoader)
-
+config = read_yaml()
 authenticator = stauth.Authenticate(
     config["credentials"],
     config["cookie"]["name"],
-    config["cookie"]["key"],
-    config["cookie"]["expiry_days"],
-    config["preauthorized"],
+    config["cookie"]["key"]
 )
 
 name, authentication_status, username = authenticator.login(location="main")
 
-
 if authentication_status:
     utl.navbar_authenticated(name)
-    nav = st.query_params.get("nav")
-
+    nav = (st.query_params.get("nav"))
     if nav == "invullen":
         st.header("")
-
-        default_start = today - datetime.timedelta(days=today.weekday())  # Monday
-        default_end = default_start + datetime.timedelta(days=4)  # Friday
-        refresh_value = datetime.timedelta(days=7)
-
+        default_start = today -timedelta(days=today.weekday())  # Monday
+        default_end = default_start - timedelta(days=4)  # Friday
+        refresh_value = timedelta(days=7)
         date_range_string = date_range_picker(
             picker_type=PickerType.week,
             start=default_start,
@@ -82,7 +78,6 @@ if authentication_status:
             #     "refresh_value": refresh_value,
             # },
         )
-
         if date_range_string:
             start, end = date_range_string
             week_numbers = extract_weeks(date_range_string)
@@ -104,15 +99,14 @@ if authentication_status:
             notes = st.text_input(
                 label="notitie", placeholder="Hier is plek voor jouw 🥚.."
             )
-
             submitted = st.form_submit_button("INVULLEN")
         if submitted:
             selected_category = selected_category[2:]
-            print(selected_category)
             update_user_csv(username, week_numbers, selected_category, notes)
             st.write(
                 f'{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen.')
             st.write('Geniet van je week!')
+
     elif nav == "overzicht":
         st.write("")
         st.write("")
@@ -148,7 +142,7 @@ if authentication_status:
         ]
 
         with tab1:
-            current_week_number = datetime.datetime.now().isocalendar()[1]
+            current_week_number = datetime.now().isocalendar()[1]
 
             current_week_planning, bad_employees = create_week_planning_team(
                 current_week_number, employees_list
@@ -195,7 +189,7 @@ if authentication_status:
                 )
 
         with tab2:
-            next_week_number = datetime.datetime.now().isocalendar()[1] + 1
+            next_week_number = datetime.now().isocalendar()[1] + 1
             next_week_planning, bad_employees = create_week_planning_team(
                 next_week_number, employees_list
             )
@@ -240,31 +234,11 @@ if authentication_status:
         authenticator.logout("logout", "unrendered", "home")
         utl.get_current_route()
 elif authentication_status is False:
-
     utl.navbar_unauthenticated()
     st.error("Username/password is incorrect")
 elif authentication_status is None:
     utl.navbar_unauthenticated()
     st.warning("Please enter your username and password")
-
-
-
-
-        # next_week_button = st.button('Vul hier meteen ook voor volgende week in')
-
-        # if next_week_button:
-        #     submitted = st.form_submit_button("INVULLEN")
-        #     if submitted:
-        #         if weeknumbers == 52:
-        #             weeknumber = 1
-        #         else:
-        #             week_numbers += 1
-        #         selected_category = selected_category[2:]
-        #         print(selected_category)
-        #         update_user_csv(username, week_numbers, selected_category, notes)
-        #         st.write(f'{username}, je bent nu al lekker bezig, bedankt voor het invullen van jou drukte voor de komende twee weken!')
-
-
 
 
 utl.inject_custom_css()

@@ -3,7 +3,7 @@ import pickle
 import re
 import pandas as pd
 import plotly.graph_objects as go
-
+import streamlit as st
 
 def update_user_csv(username, week_numbers, selected_category, notes):
     # Define the file path based on the username
@@ -177,6 +177,52 @@ def create_week_planning_team(week_number, employees_list):
 
     return df_current_week, bad_employees
 
+@st.cache_data(ttl='1d')  # Only run this query once
+def create_week_planning_team(week_number, employees_list):
+    #print(employees_list)
+    df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
+    good_employees = []
+    bad_employees = []
+    for employee in employees_list:
+        # get planning of employee
+        planning_employee = read_user_data(employee)
+        planning_employee_cw = planning_employee.loc[
+            planning_employee["week"] == week_number
+        ].reset_index()
+
+        # check if it is filled in
+        filled_in = (
+            planning_employee_cw["druk"]
+            .isin(["Afwezig", "Heel Rustig", "Rustig", "Goed", "Druk", "Heel druk"])
+            .any()
+        )
+
+        if filled_in:
+            good_employees += [employee]
+            if planning_employee_cw["druk"][0] == "Heel Rustig":
+                color = "#9c27b0"
+            elif planning_employee_cw["druk"][0] == "Rustig":
+                color = "#ec407a"
+            elif planning_employee_cw["druk"][0] == "Goed":
+                color = "#BDDB45"
+            elif planning_employee_cw["druk"][0] == "Druk":
+                color = "#fb8c00"
+            elif planning_employee_cw["druk"][0] == "Heel druk":
+                color = "#e53935"
+            else:
+                color = "#81d4fa"
+
+            employee_row = {
+                "name": employee.capitalize(),
+                "druk": planning_employee_cw["druk"][0],
+                "note": planning_employee_cw["note"][0],
+                "color": color,
+            }
+            df_current_week.loc[len(df_current_week)] = employee_row
+        else:
+            bad_employees += [employee]
+
+    return df_current_week, bad_employees
 
 # makes plotly bar chart of employees work planning overview for selected week
 def create_overview_graph(df__week, week_number):
