@@ -47,6 +47,9 @@ def update_user_csv(username, week_numbers, selected_category, notes):
             # )
 
     # Save the updated DataFrame back to the CSV file
+    
+    st.write(csv_file)
+    st.write(df)
 
     df.to_csv(csv_file, index=False)
 
