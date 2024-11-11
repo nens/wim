@@ -239,7 +239,7 @@ if authentication_status:
     elif nav == "uitloggen":
         authenticator.logout("logout", "unrendered", "home")
         utl.get_current_route()
-elif authentication_status is False
+elif authentication_status is False:
 
     utl.navbar_unauthenticated()
     st.error("Username/password is incorrect")
