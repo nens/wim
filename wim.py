@@ -14,6 +14,7 @@ from functions import (
     update_user_csv,
 )
 from time import time
+import time
 from qoutes import list_bad_qoutes
 
 im = Image.open("./images/wim_logo.png")
