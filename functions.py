@@ -246,7 +246,7 @@ def create_overview_graph(df__week, week_number):
 
     # Customize the layout (optional)
     fig.update_layout(
-        title=f"Work in montoring - weeknummer {week_number}",
+        title=f"Work in monitoring - weeknummer {week_number}",
         xaxis=dict(
             title="",
             side="top",  # put x-asis on top of plot

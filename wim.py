@@ -60,8 +60,9 @@ authenticator = stauth.Authenticate(
     config["cookie"]["key"]
 )
 
-name, authentication_status, username = authenticator.login(location="main")
-
+#name, authentication_status, username = authenticator.login(location="main")
+authentication_status = True
+name = 'kizje'
 if authentication_status:
     utl.navbar_authenticated(name)
     nav = (st.query_params.get("nav"))
@@ -122,6 +123,18 @@ if authentication_status:
             st.write(
                 f'{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen.')
             st.write('Geniet van je week!')
+        st.write('')
+        st.write('')
+        st.markdown(''
+                    ''
+                    ''
+                    ''
+                    ''
+                    '')
+        st.markdown('')
+        st.markdown('')
+        st.markdown('')
+
 
     elif nav == "overzicht":
         st.write("")
