@@ -60,9 +60,9 @@ authenticator = stauth.Authenticate(
     config["cookie"]["key"]
 )
 
-#name, authentication_status, username = authenticator.login(location="main")
-authentication_status = True
-name = 'kizje'
+name, authentication_status, username = authenticator.login(location="main")
+#authentication_status = True
+#name = 'kizje'
 if authentication_status:
     utl.navbar_authenticated(name)
     nav = (st.query_params.get("nav"))
