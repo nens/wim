@@ -67,19 +67,19 @@ if authentication_status:
     nav = (st.query_params.get("nav"))
     if nav == "invullen":
         #qoutes
-        qoute_random = random.choice(list_bad_qoutes)
-        qoute, auteur = qoute_random.split("–")
-        placeholder = st.empty()
-        placeholder1 = st.empty()
+   #     qoute_random = random.choice(list_bad_qoutes)
+    #    qoute, auteur = qoute_random.split("–")
+     #   placeholder = st.empty()
+      #  placeholder1 = st.empty()
         # Loop through each letter in the text
-        for i in range(len(qoute) + 1):
-            placeholder.header(qoute[:i])  # Update the container with the current substring
-            time.sleep(0.03)     
+       # for i in range(len(qoute) + 1):
+      #      placeholder.header(qoute[:i])  # Update the container with the current substring
+       #     time.sleep(0.03)
         #st.header(qoute)
-        for i in range(len(auteur) + 1):
-            placeholder1.text(auteur[:i])  # Update the container with the current substring
-            time.sleep(0.03)   
-            
+        #for i in range(len(auteur) + 1):
+         #   placeholder1.text(auteur[:i])  # Update the container with the current substring
+          #  time.sleep(0.03)
+
         default_start = today -timedelta(days=today.weekday())  # Monday
         default_end = default_start - timedelta(days=4)  # Friday
         refresh_value = timedelta(days=7)
