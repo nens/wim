@@ -177,8 +177,9 @@ if authentication_status:
                 current_week_number, employees_list
             )
             # print(current_week_planning)
+            default_start = today -timedelta(days=today.weekday())
             graph_current_week = create_overview_graph(
-                current_week_planning, current_week_number
+                current_week_planning, current_week_number, default_start
             )
 
             # place graphic on right spot
@@ -219,10 +220,11 @@ if authentication_status:
 
         with tab2:
             next_week_number = datetime.now().isocalendar()[1] + 1
+            start_day_next_week =  default_start + timedelta(days=7)
             next_week_planning, bad_employees = create_week_planning_team(
                 next_week_number, employees_list
             )
-            graph_next_week = create_overview_graph(next_week_planning, next_week_number)
+            graph_next_week = create_overview_graph(next_week_planning, next_week_number, start_day_next_week)
 
             # place graph or next week planning on right spot
 

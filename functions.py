@@ -4,6 +4,7 @@ import re
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from datetime import datetime, timedelta
 
 def update_user_csv(username, week_numbers, selected_category, notes):
     # Define the file path based on the username
@@ -226,7 +227,7 @@ def create_week_planning_team(week_number, employees_list):
     return df_current_week, bad_employees
 
 # makes plotly bar chart of employees work planning overview for selected week
-def create_overview_graph(df__week, week_number):
+def create_overview_graph(df__week, week_number, startday_week):
     # Create Horizontal bar chart
     values = ["Afwezig", "Heel Rustig", "Rustig", "Goed", "Druk", "Heel druk"]
 
@@ -245,8 +246,11 @@ def create_overview_graph(df__week, week_number):
     )  # give bar of every person a specific color based on drukte
 
     # Customize the layout (optional)
+    endday_week = startday_week + timedelta(days=5)
+    endday_week = endday_week.strftime("%d-%m-%Y")
+    startday_week = startday_week.strftime("%d-%m-%Y")
     fig.update_layout(
-        title=f"Work in monitoring - weeknummer {week_number}",
+        title=f"Work in Monitoring - weeknummer {week_number} - from {startday_week} until {endday_week}",
         xaxis=dict(
             title="",
             side="top",  # put x-asis on top of plot
