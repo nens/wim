@@ -19,9 +19,6 @@ credentials:
     evert:
       name: Evert
       password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC
-    janmaarten:
-      name: Jan-Maarten
-      password: $2b$12$azsjrU55wXisn6rVnQf9OuZ4axtdDXDJE2L/EUABy.snos7fxMGbm
     jasper:
       name: Jasper
       password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
@@ -37,14 +34,11 @@ credentials:
     kizje:
       name: Kizje
       password: $2b$12$D1qQLQDMUagAZblmizBmmeSX0RW0t07h1uivKGS.v.vbbA5AHwTJe
-    leendert:
-      name: Leendert
-      password: $2b$12$f5nFTXjN0UhNDOhlTZLIf.WQ/AZKqdQPSEpHP6RTyUAPz95tZiLBi
     martijn:
       name: Martijn
       password: $2b$12$a99iz36jUE9QgoYG06Defu31DwRZsrQDO4luFm14MH3rynKEyhW.u
-    mats:
-      name: Mats
+    lex:
+      name: Lex
       password: $2b$12$ypcpyEjrSorYifL7SUKhxeDKJ6ETINbHQ9nnrOsi8PuHCy8zjqhwS
     olga:
       name: Olga
