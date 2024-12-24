@@ -12,6 +12,7 @@ from functions import (
     create_week_planning_team,
     extract_weeks,
     update_user_csv,
+    get_week_details
 )
 from time import time
 import time
