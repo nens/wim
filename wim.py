@@ -1,11 +1,11 @@
 import random
 from datetime import datetime, timedelta
-from yaml.loader import SafeLoader
 
 import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 from PIL import Image
+from yaml.loader import SafeLoader
 
 # from streamlit_date_picker import PickerType, date_range_picker
 import utils2 as utl
