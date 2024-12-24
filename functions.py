@@ -262,3 +262,11 @@ def create_overview_graph(df__week, week_number, startday_week):
         categoryorder="array", categoryarray=values
     )  # zorgt ervoor dat x-axis heeft juiste volgorde
     return fig
+
+def get_week_details(week_offset=0):
+    """Returns the ISO week number, start date, and end date with an optional offset."""
+    today = datetime.now()
+    start_of_week = today - timedelta(days=today.weekday()) + timedelta(weeks=week_offset)
+    end_of_week = start_of_week + timedelta(days=4)
+    week_number = start_of_week.isocalendar().week
+    return week_number, start_of_week.date(), end_of_week.date()

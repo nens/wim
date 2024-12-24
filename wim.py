@@ -4,7 +4,7 @@ import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 from PIL import Image
-from streamlit_date_picker import PickerType, date_range_picker
+#from streamlit_date_picker import PickerType, date_range_picker
 from yaml.loader import SafeLoader
 import utils2 as utl
 from functions import (
@@ -53,6 +53,12 @@ def read_yaml():
     return config
 
 
+
+
+# Retrieve current and next week details
+current_week_number, current_week_start, current_week_end = get_week_details()
+next_week_number, next_week_start, next_week_end = get_week_details(week_offset=1)
+
 config = read_yaml()
 authenticator = stauth.Authenticate(
     config["credentials"],
@@ -63,6 +69,7 @@ authenticator = stauth.Authenticate(
 name, authentication_status, username = authenticator.login(location="main")
 #authentication_status = True
 #name = 'kizje'
+#username = "kizje"
 if authentication_status:
     utl.navbar_authenticated(name)
     nav = (st.query_params.get("nav"))
@@ -80,25 +87,21 @@ if authentication_status:
         #for i in range(len(auteur) + 1):
          #   placeholder1.text(auteur[:i])  # Update the container with the current substring
           #  time.sleep(0.03)
-
-        default_start = today -timedelta(days=today.weekday())  # Monday
-        default_end = default_start - timedelta(days=4)  # Friday
-        refresh_value = timedelta(days=7)
-        date_range_string = date_range_picker(
-            picker_type=PickerType.week,
-            start=default_start,
-            end=default_end,
-            key="week_range_picker",
-            # refresh_button={
-            #     "is_show": False,
-            #     "button_name": "Refresh Last 1 Week",
-            #     "refresh_value": refresh_value,
-            # },
+        selected_weeks = []
+        current_week_selected = st.checkbox(
+            label=f"Deze week (Week {current_week_number}: {current_week_start} - {current_week_end})",
+            key="current_week_checkbox",
         )
-        if date_range_string:
-            start, end = date_range_string
-            week_numbers = extract_weeks(date_range_string)
+        next_week_selected = st.checkbox(
+            label=f"Volgende week (Week {next_week_number}: {next_week_start} - {next_week_end})",
+            key="next_week_checkbox",
+        )
 
+        # Add weeks to the list based on checkbox state
+        if current_week_selected:
+            selected_weeks.append(current_week_number)
+        if next_week_selected:
+            selected_weeks.append(next_week_number)
         with st.form("my_form"):
             # HTML for week selector with arrows
             categories = [
@@ -119,7 +122,7 @@ if authentication_status:
             submitted = st.form_submit_button("INVULLEN")
         if submitted:
             selected_category = selected_category[2:]
-            update_user_csv(username, week_numbers, selected_category, notes)
+            update_user_csv(username, selected_weeks, selected_category, notes)
             st.write(
                 f'{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen.')
             st.write('Geniet van je week!')
