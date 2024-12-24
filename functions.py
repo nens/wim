@@ -1,10 +1,12 @@
 import os
 import pickle
 import re
+from datetime import datetime, timedelta
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
-from datetime import datetime, timedelta
+
 
 def update_user_csv(username, week_numbers, selected_category, notes):
     # Define the file path based on the username
@@ -46,7 +48,6 @@ def update_user_csv(username, week_numbers, selected_category, notes):
             # )
 
     # Save the updated DataFrame back to the CSV file
-
 
     df.to_csv(csv_file, index=False)
 
@@ -132,9 +133,11 @@ def read_user_data(username):
 
 # checks all employees files based on list of employees and creates for selected week overview of work pressure of each employee
 # if employee didn't fill form for selected week, it will be listed as bad_employee and shamed in dashboard
-@st.cache_data(ttl=300, show_spinner="Je zorgen maken is de verkeerde kant op fantaseren")
+@st.cache_data(
+    ttl=300, show_spinner="Je zorgen maken is de verkeerde kant op fantaseren"
+)
 def create_week_planning_team(week_number, employees_list):
-    #print(employees_list)
+    # print(employees_list)
     df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
     good_employees = []
     bad_employees = []
@@ -179,52 +182,6 @@ def create_week_planning_team(week_number, employees_list):
 
     return df_current_week, bad_employees
 
-
-def create_week_planning_team(week_number, employees_list):
-    #print(employees_list)
-    df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
-    good_employees = []
-    bad_employees = []
-    for employee in employees_list:
-        # get planning of employee
-        planning_employee = read_user_data(employee)
-        planning_employee_cw = planning_employee.loc[
-            planning_employee["week"] == week_number
-        ].reset_index()
-
-        # check if it is filled in
-        filled_in = (
-            planning_employee_cw["druk"]
-            .isin(["Afwezig", "Heel Rustig", "Rustig", "Goed", "Druk", "Heel druk"])
-            .any()
-        )
-
-        if filled_in:
-            good_employees += [employee]
-            if planning_employee_cw["druk"][0] == "Heel Rustig":
-                color = "#9c27b0"
-            elif planning_employee_cw["druk"][0] == "Rustig":
-                color = "#ec407a"
-            elif planning_employee_cw["druk"][0] == "Goed":
-                color = "#BDDB45"
-            elif planning_employee_cw["druk"][0] == "Druk":
-                color = "#fb8c00"
-            elif planning_employee_cw["druk"][0] == "Heel druk":
-                color = "#e53935"
-            else:
-                color = "#81d4fa"
-
-            employee_row = {
-                "name": employee.capitalize(),
-                "druk": planning_employee_cw["druk"][0],
-                "note": planning_employee_cw["note"][0],
-                "color": color,
-            }
-            df_current_week.loc[len(df_current_week)] = employee_row
-        else:
-            bad_employees += [employee]
-
-    return df_current_week, bad_employees
 
 # makes plotly bar chart of employees work planning overview for selected week
 def create_overview_graph(df__week, week_number, startday_week):
@@ -263,10 +220,13 @@ def create_overview_graph(df__week, week_number, startday_week):
     )  # zorgt ervoor dat x-axis heeft juiste volgorde
     return fig
 
+
 def get_week_details(week_offset=0):
     """Returns the ISO week number, start date, and end date with an optional offset."""
     today = datetime.now()
-    start_of_week = today - timedelta(days=today.weekday()) + timedelta(weeks=week_offset)
+    start_of_week = (
+        today - timedelta(days=today.weekday()) + timedelta(weeks=week_offset)
+    )
     end_of_week = start_of_week + timedelta(days=4)
     week_number = start_of_week.isocalendar().week
     return week_number, start_of_week.date(), end_of_week.date()

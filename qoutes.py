@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Mon Nov 11 16:40:48 2024
 
@@ -40,5 +39,5 @@ list_bad_qoutes = [
     "Het beginnen van de dingen dat was vaak toch het mooist – Griet Op de Beeck",
     "Time you enjoy wasting, was not wasted – John Lennon",
     "Als piraat bereik je meer dan wanneer je bij de marine gaat – Steve Jobs",
-    "The best way to predict the future is to invent it. – Alan Kay"
+    "The best way to predict the future is to invent it. – Alan Kay",
 ]

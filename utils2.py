@@ -10,6 +10,7 @@ def inject_custom_css():
     with open("assets/styles.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+
 def get_current_route():
     try:
         nav_param = st.query_params.nav
