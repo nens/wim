@@ -133,9 +133,9 @@ def read_user_data(username):
 
 # checks all employees files based on list of employees and creates for selected week overview of work pressure of each employee
 # if employee didn't fill form for selected week, it will be listed as bad_employee and shamed in dashboard
-@st.cache_data(
-    ttl=300, show_spinner="Je zorgen maken is de verkeerde kant op fantaseren"
-)
+# @st.cache_data(
+#     ttl=300, show_spinner="Je zorgen maken is de verkeerde kant op fantaseren"
+# )
 def create_week_planning_team(week_number, employees_list):
     # print(employees_list)
     df_current_week = pd.DataFrame(columns=["name", "druk", "note", "color"])
