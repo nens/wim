@@ -161,6 +161,7 @@ if authentication_status:
             "sven",
             "taj",
             "wessel",
+            "zina",
         ]
 
         with tab1:

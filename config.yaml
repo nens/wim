@@ -67,3 +67,6 @@ credentials:
     wessel:
       name: Wessel
       password: $2b$12$oIPIV7blWubrmBRL0p4/..DXwuVY.SydGNvzVPt3F.zR2EQTiVAny
+    zina:
+      name: Zina
+      password: $2b$12$gyju3m:~!GJm-YMO|K[\c4K}o2J6~-2k5h#=b0J$92fO1"3K1obWf
