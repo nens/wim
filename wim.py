@@ -143,7 +143,7 @@ if authentication_status:
         employees_list = [
             "alexander",
             "boran",
-            'christiaan'
+            "christiaan",
             "eefje",
             "esther",
             "evert",
