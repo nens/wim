@@ -151,7 +151,6 @@ if authentication_status:
             "jeroen",
             "joostd",
             "joosth",
-            "kizje",
             "martijn",
             "lex",
             "olof",

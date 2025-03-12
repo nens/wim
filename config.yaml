@@ -34,15 +34,12 @@ credentials:
     joostH:
       name: JoostH
       password: $2b$12$kbXdzqpLC/V4oXRE9B7DyuM637VBsK2y66vH8QUrLtBec2wlooCmG
-    kizje:
-      name: Kizje
-      password: $2b$12$D1qQLQDMUagAZblmizBmmeSX0RW0t07h1uivKGS.v.vbbA5AHwTJe
-    martijn:
-      name: Martijn
-      password: $2b$12$a99iz36jUE9QgoYG06Defu31DwRZsrQDO4luFm14MH3rynKEyhW.u
     lex:
       name: Lex
       password: $2b$12$ypcpyEjrSorYifL7SUKhxeDKJ6ETINbHQ9nnrOsi8PuHCy8zjqhwS
+    martijn:
+      name: Martijn
+      password: $2b$12$a99iz36jUE9QgoYG06Defu31DwRZsrQDO4luFm14MH3rynKEyhW.u
     olga:
       name: Olga
       password: $2b$12$uwjl.KuKHQ.1Om2Y6pplrOFBkTZvaebhjd3F07WHkezHWsC2qp91m
