@@ -10,6 +10,9 @@ credentials:
     boran:
       name: Boran
       password: $2b$12$eGuTAFGMkYLCmFVUXijL3OsTYcGXIVKBQ0zZYf9mmVCvx6uaQV2Ne
+    christiaan:
+      name: Christiaan
+      password: $2b$12$KRAStgUuv5CBQDR00otxidn8WNT5lHaiWX6Zymy3gTr1b)AT8V2RE
     eefje:
       name: Eefje
       password: $2b$12$tb0JTdAKfc02N0DCA7imUOWgtq/u04SEcbrYDer3BxQ5TDrJyYdVe
