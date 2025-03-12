@@ -2,9 +2,9 @@
 Testing phase -- voor al uw inzicht in wie wanneer druk is binnen WIO
 
 ## Toevoegen van nieuwe collega's
+Je kunt nieuwe collega's toevoegen door aan employees_list in wim.py de voornaam zonder hoofdletters toe te voegen. Vervolgens voeg je deze user toe aan de config.yaml. Hierbij voer je eerst een normaal wachtwoord in. Hierna run je lokaal de scripts/create_hashed.py. Deze functie overschrijft dit wachtwoord met een hashed wachtwoord. Als je deze verandering naar de git pusht via een pull request kan de nieuwe collega vervolgens inloggen met het normale wachtwoord.
 
 ## Verwijderen van oude collega's
-
 
 
 ## Development
