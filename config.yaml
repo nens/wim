@@ -13,8 +13,8 @@ credentials:
     christiaan:
       name: Christiaan
       password: $2b$12$MaelKQtma09xqdzMa.znNOmtfbbmM7wRzekIIvUPD8jBWqXZ.bKoO
-    eefje:
-      name: Eefje
+    jelle:
+      name: Jelle
       password: $2b$12$tb0JTdAKfc02N0DCA7imUOWgtq/u04SEcbrYDer3BxQ5TDrJyYdVe
     esther:
       name: Esther
