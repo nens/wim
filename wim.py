@@ -147,7 +147,7 @@ if authentication_status:
             "esther",
             "evert",
             "jasper",
-            "jeroen",
+            "jelle",
             "joostd",
             "joosth",
             "martijn",
@@ -158,10 +158,7 @@ if authentication_status:
             "steven",
             "stijn",
             "sven",
-            "taj",
-            "wessel",
-            "zina",
-            'jelle'
+            "zina"
         ]
 
         with tab1:

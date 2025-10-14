@@ -15,7 +15,7 @@ credentials:
       password: $2b$12$MaelKQtma09xqdzMa.znNOmtfbbmM7wRzekIIvUPD8jBWqXZ.bKoO
     jelle:
       name: Jelle
-      password: $2b$12$tb0JTdAKfc02N0DCA7imUOWgtq/u04SEcbrYDer3BxQ5TDrJyYdVe
+      password: $2b$12$UTWdvPwjaJL9r8fF41IZheorxwX6ZbnYUkHr2KNlGvxc4WAyf1gXC
     esther:
       name: Esther
       password: $2b$12$07zSPYmVoYVyV.aNfz25O.OAkvJzMwfDu6D1GmDxdAHusimzkIe9.
@@ -25,9 +25,6 @@ credentials:
     jasper:
       name: Jasper
       password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
-    jeroen:
-      name: Jeroen
-      password: $2b$12$UVXZ9FzgtyafShHpnVfU1OpzKgj.j5LEuBWHoppvgLJjdkaQkcHDm
     joostD:
       name: JoostD
       password: $2b$12$HEldi4knRMic4/2Gq0qdKO9DGzlfy1KCmJNdeCB/z4nBB4/.pkdbW
@@ -61,12 +58,6 @@ credentials:
     sven:
       name: Sven
       password: $2b$12$62R3ZqYJq6MjtP2mO90zZ.eByJ44IPb1/Q2Qk5D0nzvG6m2XFHUJS
-    taj:
-      name: Taj
-      password: $2b$12$ELSIU26JTDAs53K.ylV/O.uwUWXmNMIqTE6SH.fPTt1bF6QeCfZXe
-    wessel:
-      name: Wessel
-      password: $2b$12$oIPIV7blWubrmBRL0p4/..DXwuVY.SydGNvzVPt3F.zR2EQTiVAny
     zina:
       name: Zina
       password: $2b$12$PkY9dWe6AL.zUsij9SXjzOiUCif.FrPIa72qNUWTFSu0SUSjE7AMq
