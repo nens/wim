@@ -55,25 +55,10 @@ def read_yaml():
     return config
 
 
-def clear_employee_data(folder_path="./input_employees"):
-    files_to_delete = glob.glob(os.path.join(folder_path, "*.csv")) + glob.glob(
-        os.path.join(folder_path, "*.pkl")
-    )
-
-    if not files_to_delete:
-        st.success("Geen bestanden gevonden om te verwijderen.")
-        return
-
-    for file in files_to_delete:
-        os.remove(file)
-
-    st.success(f"Alle employee data ({len(files_to_delete)} bestanden) is verwijderd!")
-
 
 # Retrieve current and next week details
 current_week_number, current_week_start, current_week_end = get_week_details()
 next_week_number, next_week_start, next_week_end = get_week_details(week_offset=1)
-clear_employee_data()
 
 config = read_yaml()
 authenticator = stauth.Authenticate(

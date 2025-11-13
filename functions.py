@@ -1,6 +1,8 @@
 import os
 import pickle
 import re
+import glob
+import streamlit as st
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -8,6 +10,19 @@ import plotly.graph_objects as go
 
 # import streamlit as st
 
+def clear_employee_data(folder_path="./input_employees"):
+    files_to_delete = glob.glob(os.path.join(folder_path, "*.csv")) + glob.glob(
+        os.path.join(folder_path, "*.pkl")
+    )
+
+    if not files_to_delete:
+        st.success("Geen bestanden gevonden om te verwijderen.")
+        return
+
+    for file in files_to_delete:
+        os.remove(file)
+
+    st.success(f"Alle employee data ({len(files_to_delete)} bestanden) is verwijderd!")
 
 def update_user_csv(username, week_numbers, selected_category, notes):
     # Define the file path based on the username
