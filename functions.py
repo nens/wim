@@ -43,7 +43,6 @@ def update_user_csv(username, week_numbers, selected_category, notes):
             }  # Example row
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
-
     df.to_csv(csv_file, index=False)
 
 

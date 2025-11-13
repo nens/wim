@@ -1,3 +1,5 @@
+import glob
+import os
 import random
 from datetime import datetime, timedelta
 
@@ -6,15 +8,14 @@ import streamlit_authenticator as stauth
 import yaml
 from PIL import Image
 from yaml.loader import SafeLoader
-import glob
-import os
+
 # from streamlit_date_picker import PickerType, date_range_picker
 import utils2 as utl
 from functions import (
     create_overview_graph,
     create_week_planning_team,
     get_week_details,
-    update_user_csv
+    update_user_csv,
 )
 
 im = Image.open("./images/wim_logo.png")
@@ -64,7 +65,9 @@ authenticator = stauth.Authenticate(
 )
 
 # name, authentication_status, username = authenticator.login(location="main")
-name, authentication_status, username = authenticator.login(form_name='Login', location='main')
+name, authentication_status, username = authenticator.login(
+    form_name="Login", location="main"
+)
 
 # authentication_status = True
 # name = 'zina'
@@ -72,15 +75,17 @@ name, authentication_status, username = authenticator.login(form_name='Login', l
 
 
 def clear_employee_data(folder_path="./input_employees"):
-    files_to_delete = glob.glob(os.path.join(folder_path, "*.csv")) + glob.glob(os.path.join(folder_path, "*.pkl"))
-    
+    files_to_delete = glob.glob(os.path.join(folder_path, "*.csv")) + glob.glob(
+        os.path.join(folder_path, "*.pkl")
+    )
+
     if not files_to_delete:
         st.success("Geen bestanden gevonden om te verwijderen.")
         return
-    
+
     for file in files_to_delete:
         os.remove(file)
-    
+
     st.success(f"Alle employee data ({len(files_to_delete)} bestanden) is verwijderd!")
 
 
@@ -123,7 +128,7 @@ if authentication_status:
             submitted = st.form_submit_button("INVULLEN")
         if submitted:
             selected_category = selected_category[2:]
-            
+
             update_user_csv(username, selected_weeks, selected_category, notes)
             st.write(
                 f"{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen."
@@ -164,9 +169,8 @@ if authentication_status:
             "steven",
             "stijn",
             "sven",
-            "zina"
+            "zina",
         ]
-        
 
         with tab1:
             current_week_number = datetime.now().isocalendar()[1]

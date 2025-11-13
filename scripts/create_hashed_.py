@@ -6,6 +6,8 @@ from yaml.loader import SafeLoader
 # Function to hash a password
 def hash_password(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+
 # Load YAML file
 with open("./config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
