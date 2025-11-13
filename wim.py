@@ -66,9 +66,9 @@ authenticator = stauth.Authenticate(
 # name, authentication_status, username = authenticator.login(location="main")
 name, authentication_status, username = authenticator.login(form_name='Login', location='main')
 
-authentication_status = True
-name = 'zina'
-username = "zina"
+# authentication_status = True
+# name = 'zina'
+# username = "zina"
 
 
 def clear_employee_data(folder_path="./input_employees"):
