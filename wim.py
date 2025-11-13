@@ -64,10 +64,10 @@ authenticator = stauth.Authenticate(
     config["credentials"], config["cookie"]["name"], config["cookie"]["key"]
 )
 
-# name, authentication_status, username = authenticator.login(location="main")
-name, authentication_status, username = authenticator.login(
-    form_name="Login", location="main"
-)
+name, authentication_status, username = authenticator.login(location="main")
+# name, authentication_status, username = authenticator.login(
+#     form_name="Login", location="main"
+# )
 
 # authentication_status = True
 # name = 'zina'
