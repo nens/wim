@@ -6,15 +6,15 @@ import streamlit_authenticator as stauth
 import yaml
 from PIL import Image
 from yaml.loader import SafeLoader
-
+import glob
+import os
 # from streamlit_date_picker import PickerType, date_range_picker
 import utils2 as utl
 from functions import (
     create_overview_graph,
     create_week_planning_team,
     get_week_details,
-    update_user_csv,
-    reset_employee_data
+    update_user_csv
 )
 
 im = Image.open("./images/wim_logo.png")
@@ -65,9 +65,25 @@ authenticator = stauth.Authenticate(
 
 # name, authentication_status, username = authenticator.login(location="main")
 name, authentication_status, username = authenticator.login(form_name='Login', location='main')
+
 authentication_status = True
 name = 'zina'
 username = "zina"
+
+
+def clear_employee_data(folder_path="./input_employees"):
+    files_to_delete = glob.glob(os.path.join(folder_path, "*.csv")) + glob.glob(os.path.join(folder_path, "*.pkl"))
+    
+    if not files_to_delete:
+        st.success("Geen bestanden gevonden om te verwijderen.")
+        return
+    
+    for file in files_to_delete:
+        os.remove(file)
+    
+    st.success(f"Alle employee data ({len(files_to_delete)} bestanden) is verwijderd!")
+
+
 if authentication_status:
     utl.navbar_authenticated(name)
     nav = st.query_params.get("nav")
@@ -150,8 +166,7 @@ if authentication_status:
             "sven",
             "zina"
         ]
-        for employee in employees_list:
-            reset_employee_data(employee)
+        
 
         with tab1:
             current_week_number = datetime.now().isocalendar()[1]

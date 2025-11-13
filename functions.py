@@ -46,12 +46,6 @@ def update_user_csv(username, week_numbers, selected_category, notes):
 
     df.to_csv(csv_file, index=False)
 
-def reset_employee_data(username):
-    csv_file = f"./input_employees/{username}.csv"
-    pd.DataFrame(columns=["week", "druk", "note"]).to_csv(csv_file, index=False)
-
-    print("Alle data is gereset!")
-
 
 def update_user_data(username, week_numbers, selected_category, notes):
     # Define the file path based on the username
