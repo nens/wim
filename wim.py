@@ -14,6 +14,7 @@ from functions import (
     create_week_planning_team,
     get_week_details,
     update_user_csv,
+    reset_employee_data
 )
 
 im = Image.open("./images/wim_logo.png")
@@ -62,27 +63,15 @@ authenticator = stauth.Authenticate(
     config["credentials"], config["cookie"]["name"], config["cookie"]["key"]
 )
 
-name, authentication_status, username = authenticator.login(location="main")
-# authentication_status = True
-# name = 'kizje'
-# username = "kizje"
+# name, authentication_status, username = authenticator.login(location="main")
+name, authentication_status, username = authenticator.login(form_name='Login', location='main')
+authentication_status = True
+name = 'zina'
+username = "zina"
 if authentication_status:
     utl.navbar_authenticated(name)
     nav = st.query_params.get("nav")
     if nav == "invullen":
-        # qoutes
-        #     qoute_random = random.choice(list_bad_qoutes)
-        #    qoute, auteur = qoute_random.split("–")
-        #   placeholder = st.empty()
-        #  placeholder1 = st.empty()
-        # Loop through each letter in the text
-        # for i in range(len(qoute) + 1):
-        #      placeholder.header(qoute[:i])  # Update the container with the current substring
-        #     time.sleep(0.03)
-        # st.header(qoute)
-        # for i in range(len(auteur) + 1):
-        #   placeholder1.text(auteur[:i])  # Update the container with the current substring
-        #  time.sleep(0.03)
         selected_weeks = []
         current_week_selected = st.checkbox(
             label=f"Deze week (Week {current_week_number}: {current_week_start} - {current_week_end})",
@@ -118,6 +107,7 @@ if authentication_status:
             submitted = st.form_submit_button("INVULLEN")
         if submitted:
             selected_category = selected_category[2:]
+            
             update_user_csv(username, selected_weeks, selected_category, notes)
             st.write(
                 f"{username}, Bedankt voor het invullen, door de datum aan te passen kan je ook voor volgende week alvast je verwachte drukte invullen."
@@ -160,6 +150,8 @@ if authentication_status:
             "sven",
             "zina"
         ]
+        for employee in employees_list:
+            reset_employee_data(employee)
 
         with tab1:
             current_week_number = datetime.now().isocalendar()[1]
@@ -167,7 +159,6 @@ if authentication_status:
             current_week_planning, bad_employees = create_week_planning_team(
                 current_week_number, employees_list
             )
-            # print(current_week_planning)
             default_start = today - timedelta(days=today.weekday())
             graph_current_week = create_overview_graph(
                 current_week_planning, current_week_number, default_start

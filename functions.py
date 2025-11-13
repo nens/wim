@@ -43,14 +43,14 @@ def update_user_csv(username, week_numbers, selected_category, notes):
             }  # Example row
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
-            # df = df.append(
-            #     {"week": week, "druk": selected_category, "note": notes},
-            #     ignore_index=True,
-            # )
-
-    # Save the updated DataFrame back to the CSV file
 
     df.to_csv(csv_file, index=False)
+
+def reset_employee_data(username):
+    csv_file = f"./input_employees/{username}.csv"
+    pd.DataFrame(columns=["week", "druk", "note"]).to_csv(csv_file, index=False)
+
+    print("Alle data is gereset!")
 
 
 def update_user_data(username, week_numbers, selected_category, notes):
