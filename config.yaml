@@ -25,6 +25,9 @@ credentials:
     jasper:
       name: Jasper
       password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
+    jasper:
+      name: Jermo
+      password: $2b$12$wAsuWbcjDeOuhr66pK2XyO6mFgXt7HRbOc54yz76pxk57nmKh3SoC
     joostD:
       name: JoostD
       password: $2b$12$HEldi4knRMic4/2Gq0qdKO9DGzlfy1KCmJNdeCB/z4nBB4/.pkdbW
