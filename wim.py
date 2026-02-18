@@ -144,7 +144,7 @@ if authentication_status:
             "floor",
             "jasper",
             "jelle",
-            "Jermo",
+            "jermo",
             "joostd",
             "joosth",
             "martijn",
@@ -155,7 +155,7 @@ if authentication_status:
             "steven",
             "stijn",
             "sven",
-            "Tosca",
+            "tosca",
             "zina",
         ]
 
