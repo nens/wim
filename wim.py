@@ -141,8 +141,10 @@ if authentication_status:
             "christiaan",
             "esther",
             "evert",
+            "floor",
             "jasper",
             "jelle",
+            "Jermo",
             "joostd",
             "joosth",
             "martijn",
@@ -153,6 +155,7 @@ if authentication_status:
             "steven",
             "stijn",
             "sven",
+            "Tosca",
             "zina",
         ]
 
