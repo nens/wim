@@ -18,7 +18,10 @@ credentials:
       password: $2b$12$07zSPYmVoYVyV.aNfz25O.OAkvJzMwfDu6D1GmDxdAHusimzkIe9.
     evert:
       name: Evert
-      password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC
+      password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC   
+    floor:
+      name: Floor
+      password: FloorWimToegang
     jasper:
       name: Jasper
       password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
