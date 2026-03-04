@@ -95,13 +95,13 @@ if authentication_status:
         with st.form("my_form"):
             # HTML for week selector with arrows
             categories = [
-                "🛌 Heel Rustig",
-                "😐 Rustig",
-                "😎 Goed",
-                "🐝 Druk",
-                "🔥 Heel druk",
-                "🚫 Afwezig",
-            ]
+                "😴 Heel Rustig",
+                "🥱 Rustig",
+                "✅ Goed",
+                "⚡ Druk",
+                "🚀 Heel druk",
+                "🏖️ Afwezig",
+]
 
             selected_category = st.radio(
                 "Drukte", categories, index=0, key="category_selector", horizontal=False
