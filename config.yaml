@@ -64,6 +64,9 @@ credentials:
     sven:
       name: Sven
       password: $2b$12$62R3ZqYJq6MjtP2mO90zZ.eByJ44IPb1/Q2Qk5D0nzvG6m2XFHUJS
+    tosca:
+      name: Tosca
+      password: Tosca
     zina:
       name: Zina
       password: $2b$12$PkY9dWe6AL.zUsij9SXjzOiUCif.FrPIa72qNUWTFSu0SUSjE7AMq
