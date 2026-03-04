@@ -18,19 +18,19 @@ credentials:
       password: $2b$12$07zSPYmVoYVyV.aNfz25O.OAkvJzMwfDu6D1GmDxdAHusimzkIe9.
     evert:
       name: Evert
-      password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC   
+      password: $2b$12$B8EOhNxvkvr9mAU7s0t78OYOj40jJN8x.G5cfjncva/IuiRy8LHwC
     floor:
       name: Floor
-      password: FloorWimToegang
+      password: $2b$12$hATbA6Dnto3VKQYuOocMt./nlZq1f9vlyEFRjWhf1B/TL/3Ls4PDK
     jasper:
       name: Jasper
       password: $2b$12$48Ab.GxHuTzkt3KHXgyJze4ZGQIluNE5M0ZTeO.DpYbrpSz.Gre02
-    jermo:
-      name: Jermo
-      password: $2b$12$wAsuWbcjDeOuhr66pK2XyO6mFgXt7HRbOc54yz76pxk57nmKh3SoC
     jelle:
       name: Jelle
       password: $2b$12$UTWdvPwjaJL9r8fF41IZheorxwX6ZbnYUkHr2KNlGvxc4WAyf1gXC
+    jermo:
+      name: Jermo
+      password: $2b$12$wAsuWbcjDeOuhr66pK2XyO6mFgXt7HRbOc54yz76pxk57nmKh3SoC
     joostD:
       name: JoostD
       password: $2b$12$HEldi4knRMic4/2Gq0qdKO9DGzlfy1KCmJNdeCB/z4nBB4/.pkdbW
