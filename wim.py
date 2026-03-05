@@ -11,7 +11,6 @@ from yaml.loader import SafeLoader
 import utils2 as utl
 from functions import (
     create_overview_columns,
-    create_overview_graph,
     create_week_planning_team,
     get_week_details,
     update_user_csv,
@@ -122,84 +121,86 @@ if authentication_status:
             )
             st.write("Geniet van je week!")
 
-    elif nav == "overzicht":
-        tab1, tab2, tab3, tab4 = st.tabs(
-            [
-                ":mantelpiece_clock: Deze week",
-                ":calendar: Volgende week",
-                ":calendar: Over 2 weken",
-                ":calendar: Over 3 weken",
-            ]
+elif nav == "overzicht":
+
+    tab1, tab2, tab3, tab4 = st.tabs(
+        [
+            ":mantelpiece_clock: Deze week",
+            ":calendar: Volgende week",
+            ":calendar: Over 2 weken",
+            ":calendar: Over 3 weken",
+        ]
+    )
+
+    # alle namen
+    employees_list = [
+        "alexander",
+        "boran",
+        "christiaan",
+        "esther",
+        "evert",
+        "floor",
+        "jasper",
+        "jelle",
+        "jermo",
+        "joostd",
+        "joosth",
+        "martijn",
+        "lex",
+        "olof",
+        "philippine",
+        "sjon",
+        "steven",
+        "stijn",
+        "sven",
+        "tosca",
+        "zina",
+    ]
+
+    def render_week_tab(week_number: int, week_start_date: datetime) -> None:
+        week_planning, bad_employees = create_week_planning_team(
+            week_number, employees_list
         )
 
-         # alle namen
-        employees_list = [
-            "alexander",
-            "boran",
-            "christiaan",
-            "esther",
-            "evert",
-            "floor",
-            "jasper",
-            "jelle",
-            "jermo",
-            "joostd",
-            "joosth",
-            "martijn",
-            "lex",
-            "olof",
-            "philippine",
-            "sjon",
-            "steven",
-            "stijn",
-            "sven",
-            "tosca",
-            "zina",
-        ]
-
-        def render_week_tab(week_number: int, week_start_date: datetime) -> None:
-            week_planning, bad_employees = create_week_planning_team(week_number, employees_list)
-            graph = create_overview_graph(week_planning, week_number, week_start_date)
-
-            if not bad_employees:
-                st.markdown("### HAPPY WIM :heart_eyes:")
-            else:
-                list_of_emotions = [
-                    ":pinched_fingers:",
-                    ":man-facepalming:",
-                    ":pancakes:",
-                    ":angry:",
-                    ":pensive:",
-                    ":unamused:",
-                    ":broken_heart:",
-                    ":thumbsdown:",
-                ]
-                st.markdown("### SHAME list :frog:")
-                st.markdown(
-                    ", ".join(
-                        [
-                            f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}"
-                            for bad_employee in bad_employees
-                        ]
-                    )
+        if not bad_employees:
+            st.markdown("### HAPPY WIM :heart_eyes:")
+        else:
+            list_of_emotions = [
+                ":pinched_fingers:",
+                ":man-facepalming:",
+                ":pancakes:",
+                ":angry:",
+                ":pensive:",
+                ":unamused:",
+                ":broken_heart:",
+                ":thumbsdown:",
+            ]
+            st.markdown("### SHAME list :frog:")
+            st.markdown(
+                ", ".join(
+                    [
+                        f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}"
+                        for bad_employee in bad_employees
+                    ]
                 )
+            )
 
-           create_overview_columns(week_planning))
+        create_overview_columns(week_planning)
 
-        # Monday of current week
-        default_start = today - timedelta(days=today.weekday())
+    # Monday of current week
+    default_start = today - timedelta(days=today.weekday())
 
-        with tab1:
-            render_week_tab(current_week_number, default_start)
+    with tab1:
+        render_week_tab(current_week_number, default_start)
 
-        with tab2:
-            render_week_tab(next_week_number, default_start + timedelta(days=7))
+    with tab2:
+        render_week_tab(next_week_number, default_start + timedelta(days=7))
 
-        with tab3:
-            render_week_tab(week3_number, default_start + timedelta(days=14))
+    with tab3:
+        render_week_tab(week3_number, default_start + timedelta(days=14))
 
-        with tab4:
-            render_week_tab(week4_number, default_start + timedelta(days=21))
+    with tab4:
+        render_week_tab(week4_number, default_start + timedelta(days=21))
 
     elif nav == "uitloggen":
         authenticator.logout("logout", "unrendered", "home")
