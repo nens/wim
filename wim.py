@@ -10,6 +10,7 @@ from yaml.loader import SafeLoader
 
 import utils2 as utl
 from functions import (
+    create_overview_columns,
     create_overview_graph,
     create_week_planning_team,
     get_week_details,
@@ -183,7 +184,7 @@ if authentication_status:
                     )
                 )
 
-            st.plotly_chart(graph, theme="streamlit", use_container_width=True)
+           create_overview_columns(week_planning))
 
         # Monday of current week
         default_start = today - timedelta(days=today.weekday())
