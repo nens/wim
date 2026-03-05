@@ -108,11 +108,13 @@ if authentication_status:
                 key="category_selector",
                 horizontal=False,
             )
-            notes = st.text_input(label="notitie", placeholder="Hier is plek voor jouw 🥚..")
+            notes = st.text_input(
+                label="notitie", placeholder="Hier is plek voor jouw 🥚.."
+            )
             submitted = st.form_submit_button("INVULLEN")
 
         if submitted:
-            # Robust: works even when emojis are multiple unicode chars
+            # store category without emoji
             selected_category_clean = selected_category.split(" ", 1)[1]
             update_user_csv(username, selected_weeks, selected_category_clean, notes)
 
@@ -121,86 +123,83 @@ if authentication_status:
             )
             st.write("Geniet van je week!")
 
-elif nav == "overzicht":
-
-    tab1, tab2, tab3, tab4 = st.tabs(
-        [
-            ":mantelpiece_clock: Deze week",
-            ":calendar: Volgende week",
-            ":calendar: Over 2 weken",
-            ":calendar: Over 3 weken",
-        ]
-    )
-
-    # alle namen
-    employees_list = [
-        "alexander",
-        "boran",
-        "christiaan",
-        "esther",
-        "evert",
-        "floor",
-        "jasper",
-        "jelle",
-        "jermo",
-        "joostd",
-        "joosth",
-        "martijn",
-        "lex",
-        "olof",
-        "philippine",
-        "sjon",
-        "steven",
-        "stijn",
-        "sven",
-        "tosca",
-        "zina",
-    ]
-
-    def render_week_tab(week_number: int, week_start_date: datetime) -> None:
-        week_planning, bad_employees = create_week_planning_team(
-            week_number, employees_list
+    elif nav == "overzicht":
+        tab1, tab2, tab3, tab4 = st.tabs(
+            [
+                ":mantelpiece_clock: Deze week",
+                ":calendar: Volgende week",
+                ":calendar: Over 2 weken",
+                ":calendar: Over 3 weken",
+            ]
         )
 
-        if not bad_employees:
-            st.markdown("### HAPPY WIM :heart_eyes:")
-        else:
-            list_of_emotions = [
-                ":pinched_fingers:",
-                ":man-facepalming:",
-                ":pancakes:",
-                ":angry:",
-                ":pensive:",
-                ":unamused:",
-                ":broken_heart:",
-                ":thumbsdown:",
-            ]
-            st.markdown("### SHAME list :frog:")
-            st.markdown(
-                ", ".join(
-                    [
-                        f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}"
-                        for bad_employee in bad_employees
-                    ]
-                )
+         # alle namen
+        employees_list = [
+            "alexander",
+            "boran",
+            "christiaan",
+            "esther",
+            "evert",
+            "floor",
+            "jasper",
+            "jelle",
+            "jermo",
+            "joostd",
+            "joosth",
+            "martijn",
+            "lex",
+            "olof",
+            "philippine",
+            "sjon",
+            "steven",
+            "stijn",
+            "sven",
+            "tosca",
+            "zina",
+        ]
+
+        def render_week_tab(week_number: int) -> None:
+            week_planning, bad_employees = create_week_planning_team(
+                week_number, employees_list
             )
 
-        create_overview_columns(week_planning)
+            if not bad_employees:
+                st.markdown("### HAPPY WIM :heart_eyes:")
+            else:
+                list_of_emotions = [
+                    ":pinched_fingers:",
+                    ":man-facepalming:",
+                    ":pancakes:",
+                    ":angry:",
+                    ":pensive:",
+                    ":unamused:",
+                    ":broken_heart:",
+                    ":thumbsdown:",
+                ]
+                st.markdown("### SHAME list :frog:")
+                st.markdown(
+                    ", ".join(
+                        [
+                            f"{random.choice(list_of_emotions)} {bad_employee.capitalize()}"
+                            for bad_employee in bad_employees
+                        ]
+                    )
+                )
 
-    # Monday of current week
-    default_start = today - timedelta(days=today.weekday())
+            # NEW: show columns instead of plotly chart
+            create_overview_columns(week_planning)
 
-    with tab1:
-        render_week_tab(current_week_number, default_start)
+        with tab1:
+            render_week_tab(current_week_number)
 
-    with tab2:
-        render_week_tab(next_week_number, default_start + timedelta(days=7))
+        with tab2:
+            render_week_tab(next_week_number)
 
-    with tab3:
-        render_week_tab(week3_number, default_start + timedelta(days=14))
+        with tab3:
+            render_week_tab(week3_number)
 
-    with tab4:
-        render_week_tab(week4_number, default_start + timedelta(days=21))
+        with tab4:
+            render_week_tab(week4_number)
 
     elif nav == "uitloggen":
         authenticator.logout("logout", "unrendered", "home")
