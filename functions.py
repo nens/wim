@@ -191,6 +191,39 @@ def create_week_planning_team(week_number, employees_list):
 
     return df_current_week, bad_employees
 
+def create_overview_columns(df_week: pd.DataFrame):
+    """
+    Show employees grouped in columns by workload category.
+    """
+
+    categories = [
+        ("😴", "Heel Rustig"),
+        ("🥱", "Rustig"),
+        ("✅", "Goed"),
+        ("⚡", "Druk"),
+        ("🚀", "Heel druk"),
+        ("🏖️", "Afwezig"),
+    ]
+
+    cols = st.columns(len(categories))
+
+    for col, (emoji, label) in zip(cols, categories):
+        with col:
+            st.markdown(f"### {emoji} {label}")
+
+            names = (
+                df_week.loc[df_week["druk"] == label, "name"]
+                .dropna()
+                .astype(str)
+                .sort_values()
+                .tolist()
+            )
+
+            if names:
+                st.markdown("\n".join([f"- {n}" for n in names]))
+            else:
+                st.markdown("_Niemand_")
+
 
 # makes plotly bar chart of employees work planning overview for selected week
 def create_overview_graph(df__week, week_number, startday_week):
