@@ -10,7 +10,7 @@ from yaml.loader import SafeLoader
 
 import utils2 as utl
 from functions import (
-    create_overview_columns,
+    create_overview_graph,
     create_week_planning_team,
     get_week_details,
     update_user_csv,
@@ -108,13 +108,11 @@ if authentication_status:
                 key="category_selector",
                 horizontal=False,
             )
-            notes = st.text_input(
-                label="notitie", placeholder="Hier is plek voor jouw 🥚.."
-            )
+            notes = st.text_input(label="notitie", placeholder="Hier is plek voor jouw 🥚..")
             submitted = st.form_submit_button("INVULLEN")
 
         if submitted:
-            # store category without emoji
+            # Robust: works even when emojis are multiple unicode chars
             selected_category_clean = selected_category.split(" ", 1)[1]
             update_user_csv(username, selected_weeks, selected_category_clean, notes)
 
@@ -158,10 +156,9 @@ if authentication_status:
             "zina",
         ]
 
-        def render_week_tab(week_number: int) -> None:
-            week_planning, bad_employees = create_week_planning_team(
-                week_number, employees_list
-            )
+        def render_week_tab(week_number: int, week_start_date: datetime) -> None:
+            week_planning, bad_employees = create_week_planning_team(week_number, employees_list)
+            graph = create_overview_graph(week_planning, week_number, week_start_date)
 
             if not bad_employees:
                 st.markdown("### HAPPY WIM :heart_eyes:")
@@ -186,20 +183,22 @@ if authentication_status:
                     )
                 )
 
-            # NEW: show columns instead of plotly chart
-            create_overview_columns(week_planning)
+            st.plotly_chart(graph, theme="streamlit", use_container_width=True)
+
+        # Monday of current week
+        default_start = today - timedelta(days=today.weekday())
 
         with tab1:
-            render_week_tab(current_week_number)
+            render_week_tab(current_week_number, default_start)
 
         with tab2:
-            render_week_tab(next_week_number)
+            render_week_tab(next_week_number, default_start + timedelta(days=7))
 
         with tab3:
-            render_week_tab(week3_number)
+            render_week_tab(week3_number, default_start + timedelta(days=14))
 
         with tab4:
-            render_week_tab(week4_number)
+            render_week_tab(week4_number, default_start + timedelta(days=21))
 
     elif nav == "uitloggen":
         authenticator.logout("logout", "unrendered", "home")
